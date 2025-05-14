@@ -2,15 +2,10 @@
 
 declare(strict_types=1);
 
-class HomepageController
+class HomepageController extends AbstractController
 {
     public function index(): void
     {
-        echo "
-            Ola mundo - Pagina inicial
-
-            <button>Clique aqui</button>
-        ";
+        $this->render('homepage/index');
     }
 }
-
