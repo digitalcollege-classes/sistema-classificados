@@ -2,15 +2,18 @@
 
 declare(strict_types=1);
 
-class UserController
+final class UserController extends AbstractController
 {
+    public const string VIEW_LIST = 'user/list';
+    public const string VIEW_ADD = 'user/add';  
+
     public function list(): void
     {
-        echo "Pagina de listar usuarios";
+        $this->render(self::VIEW_LIST);
     }
 
     public function add(): void
     {
-        echo "Pagina de cadastrar usuario";
+        $this->render(self::VIEW_ADD);
     }
 }

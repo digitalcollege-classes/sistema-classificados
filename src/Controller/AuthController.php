@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-class AuthController
+final class AuthController extends AbstractController
 {
+    public const string VIEW_LOGIN = 'auth/login';
+
     public function login(): void
     {
-        echo "Pagina de login";
+        $this->render(self::VIEW_LOGIN);
     }
 }

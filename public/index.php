@@ -9,11 +9,13 @@ include '../src/Controller/UserController.php';
 
 $url = $_SERVER['REQUEST_URI'];
 
+// namespace
 
 
 $routes = [
     '/' => [HomepageController::class, 'index'],
     '/usuarios' => [UserController::class, 'list'],
+    '/users/' => [UserController::class, 'list'],
     '/usuarios/adicionar' => [UserController::class, 'add'],
     '/login' => [AuthController::class, 'login'],
 ];
@@ -31,6 +33,7 @@ if (false === isset($routes[$url])) {
 [$controller, $method] = $routes[$url]; //desconstruindo
 
 (new $controller())->$method(); // (new HomepageController())->index();
+
 
 
 
