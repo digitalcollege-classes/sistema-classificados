@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Controller;
+
 final class UserController extends AbstractController
 {
     public const string VIEW_LIST = 'user/list';
@@ -9,7 +11,15 @@ final class UserController extends AbstractController
 
     public function list(): void
     {
-        $this->render(self::VIEW_LIST);
+        $usuarios = [
+            'Joaquim',
+            'Filomena',
+            'Raimundinha',
+        ];
+
+        $this->render(self::VIEW_LIST, [
+            'usuarios' => $usuarios,
+        ]);
     }
 
     public function add(): void

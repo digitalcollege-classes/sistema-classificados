@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Controller;
+
 final class ErrorController extends AbstractController
 {
     public const string VIEW_NOT_FOUND = 'error/page-not-found';

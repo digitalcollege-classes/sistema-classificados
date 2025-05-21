@@ -1,43 +1,40 @@
 <?php
 
-include '../src/Controller/AbstractController.php';
+use App\Controller\ErrorController;
+use App\Controller\HomepageController;
 
-include '../src/Controller/AuthController.php';
-include '../src/Controller/ErrorController.php';
-include '../src/Controller/HomepageController.php';
-include '../src/Controller/UserController.php';
+// docker ps
+// docker exec -it DDD bash
+// composer install 
 
-$url = $_SERVER['REQUEST_URI'];
+require_once '../vendor/autoload.php';
 
-// namespace
+$url = parse_url($_SERVER['REQUEST_URI'])['path'];
 
+function routes(string $routeNames): array
+{
+    return include "../routes/{$routeNames}Routes.php";
+}
 
 $routes = [
     '/' => [HomepageController::class, 'index'],
-    '/usuarios' => [UserController::class, 'list'],
-    '/users/' => [UserController::class, 'list'],
-    '/usuarios/adicionar' => [UserController::class, 'add'],
-    '/login' => [AuthController::class, 'login'],
 ];
+
+$routes = [
+    ... $routes,
+    ... routes('user'),
+    ... routes('auth'),
+    ... routes('advertisement'),
+];
+
+// CRUD Advertisement
+// /anuncios
 
 if (false === isset($routes[$url])) {
     (new ErrorController())->pageNotFound();
     exit; //matar a aplicação
 } 
 
-// forma 01
-// $controller = $routes[$url][0]; //HomepageController
-// $method = $routes[$url][1]; // index
+[$controller, $method] = $routes[$url]; 
 
-// forma 02
-[$controller, $method] = $routes[$url]; //desconstruindo
-
-(new $controller())->$method(); // (new HomepageController())->index();
-
-
-
-
-
-
-
-
+(new $controller())->$method(); 
