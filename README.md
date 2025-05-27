@@ -16,7 +16,7 @@ Primeiro basta clonar o repositório
 
 `git clone https://github.com/digitalcollege-classes/sistema-classificados`
 
-Agora entre na pasta com o terminal 
+Agora entre na pasta com o terminal
 
 `cd sistema-classificados`
 
@@ -30,37 +30,41 @@ E agora rodar o composer install para instalar as dependencias
 
 Pronto,é sucesso!
 
-Acesse o http://localhost:8080
+Acesse o <http://localhost:8080>
 
 ## Como contribuir com o GIT
 
 1. **Passo 1:** Atualizar a main
-```shell
-git checkout main
-git pull origin main
-```
+
+    ```shell
+    git checkout main
+    git pull origin main
+    ```
 
 2. **Passo 2:** Criar a nova branch
-```shell
-git checkout -b <nome-da-branch>
-```
+
+    ```shell
+    git checkout -b <nome-da-branch>
+    ```
 
 3. **Passo 3:** Realizar as alterações da tarefa
 
-> Códigos: HTML, CSS, PHP, etc
+    > Códigos: HTML, CSS, PHP, etc
 
 4. **Passo 4:** Commitar e abrir o PR
-```shell
-git add .
-git commit -m "O que a alteração faz?"
-git push origin <nome-da-branch>
-```
 
-Ao fazer isso vai aparecer um link para abrir o pull request
+    ```shell
+    git add .
+    git commit -m "O que a alteração faz?"
+    git push origin <nome-da-branch>
+    ```
+
+    Ao fazer isso vai aparecer um link para abrir o pull request
 
 5. **Passo 5:** Caso haja alteração a serem feitas
-```shell
-git add .
-git commit --amend --no-edit
-git push origin <nome-da-branch> -f
-```
+
+    ```shell
+    git add .
+    git commit --amend --no-edit
+    git push origin <nome-da-branch> -f
+    ```
