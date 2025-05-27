@@ -1,20 +1,36 @@
-<form>
-  <div class="mb-3">
-    <label for="titulo" class="form-label">Titulo</label>
-    <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+<section class="card card-body mt-5">
+  <h2>Novo Anuncio</h2>
+
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <img src="/assets/images/add-advertisement.svg" width="80%" alt="">
+    </div>
+    <div class="col">
+      <form>
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Titulo</label>
+          <input placeholder="Digite aqui" type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+        </div>
+
+        <div class="mb-3">
+          <label for="descricao">Descrição</label>
+          <textarea class="form-control" placeholder="Escreva sua descrição" id="descricao"></textarea>
+        </div>
+
+          <div class="mb-3">
+            <label for="inputState">Status do Anuncio</label>
+              <select id="inputState" name="status" class="form-select" aria-label="Default select example">
+                  <option selected disabled>Selecione</option>
+                  <option>Publicado</option>
+                  <option>Rascunho</option>
+              </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">PRONTO</button>
+      </form>
+    </div>
   </div>
-  <div class="form-floating">
-    <textarea class="form-control" placeholder="Escreva sua descrição" id="descricao"></textarea>
-    <label for="descricao">Descrição</label>
-    </div>
-    <div class="mb-3 form-check">
-        <select id="inputState" class="input" name="status" class="form-select" aria-label="Default select example">
-            <option selected disabled>Selecione</option>
-            <option>Publicado</option>
-            <option>Rascunho</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</section>
 
 
