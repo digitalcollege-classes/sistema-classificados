@@ -10,6 +10,10 @@ abstract class AbstractController
     {
         extract($data);
 
+        include '../views/_layouts/head.phtml';
+
         include "../views/{$view}.phtml";
+
+        include '../views/_layouts/footer.phtml';
     }
 }
