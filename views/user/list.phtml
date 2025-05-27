@@ -1,9 +1,38 @@
 <h1>Pagina de Listar Usuarios</h1>
+<section>
+    <table>
+        <thead >
+            <tr>
+                <th>id</th>
+                <th>status</th>
+                <th>Nome</th>
+                <th>tipo</th>
+                <th>foto</th>
+                <th>ultimo-login</th>
+                <th>adicionado</th>
+                <th>editado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
 
-<ul>
-    <?php
-        foreach ($usuarios as $cada) {
-            echo "<li>{$cada}</li>";
-        }
-    ?>
-</ul>
+            <?php foreach ($usuarios as $usuario): ?>              
+                
+                <tr>
+                    <td><?=$usuario['id']?></td>
+                    <td><?=$usuario['status']?></td>
+                    <td><?=$usuario['name']?></td>
+                    <td><?=$usuario['type']?></td>
+                    <td><?=$usuario['photo']?></td>
+                    <td><?=$usuario['data-last-login']?></td>
+                    <td><?=$usuario['data-add']?></td>
+                    <td><?=$usuario['data-edit']?></td>
+                    <td>
+                        <a href='' class='btn btn-warning btn-sm'>Editar</a>
+                        <a href='' class='btn btn-danger btn-sm'>Deletar</a>
+                    </td>
+                </tr>
+            <?php endforeach?>
+        </tbody>
+    </table>
+</section>
