@@ -1,1 +1,37 @@
 <h1>Listar Categorias</h1>
+
+<?php if (empty($categories)): ?>
+    <p>Nenhuma categoria cadastrada.</p>
+<?php else: ?>
+    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+        <thead style="background-color: #f2f2f2;">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Foto</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($categories as $category): ?>
+                <tr>
+                    <td><?= htmlspecialchars($category['id']) ?></td>
+                    <td><?= htmlspecialchars($category['name']) ?></td>
+                    <td><?= htmlspecialchars($category['description']) ?></td>
+                    <td>
+                        <?php if (!empty($category['photo'])): ?>
+                            <img src="<?= htmlspecialchars($category['photo']) ?>" alt="Foto" width="60" style="border-radius: 4px;">
+                        <?php else: ?>
+                            <span style="color: #888;">Sem foto</span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="/categoria/editar/<?= urlencode($category['id']) ?>">Editar</a> |
+                        <a href="/categoria/excluir/<?= urlencode($category['id']) ?>" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
