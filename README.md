@@ -24,6 +24,10 @@ E agora basta rodar o docker
 
 `docker compose up -d`
 
+E agora rodar o composer install para instalar as dependencias
+
+`docker compose exec -T php bash -c "composer install"`
+
 Pronto,é sucesso!
 
 Acesse o http://localhost:8080
