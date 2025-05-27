@@ -3,10 +3,6 @@
 use App\Controller\ErrorController;
 use App\Controller\HomepageController;
 
-// docker ps
-// docker exec -it DDD bash
-// composer install 
-
 require_once '../vendor/autoload.php';
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -25,6 +21,7 @@ $routes = [
     ... routes('user'),
     ... routes('auth'),
     ... routes('advertisement'),
+    ... routes('category'),
 ];
 
 // CRUD Advertisement
