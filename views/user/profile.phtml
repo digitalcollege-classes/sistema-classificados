@@ -1,0 +1,47 @@
+<style>
+.perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+}
+</style>
+
+<div class="perfil">
+    <h1>Pernil</h1>
+    <img src="/assets/images/sujiro.jpeg" alt="Sujiro Kimimami" height="200" width="200" />
+    <h3>Sujiro Kimimami</h3>
+
+    <form action="POST" class="perfil-form">
+        <div>
+            <label for="Nome">Nome</label>
+            <input id="nome" name="nome" type="text">
+        </div>
+        <div>
+            <label for="Email">Email</label>
+            <input id="email" name="email" type="email">
+        </div>
+        <div>
+            <label for="Senha">Senha</label>
+            <input id="senha" name="senha" type="password">
+        </div>
+
+        <input type="submit" value="Salvar">
+    </form>
+
+    <div>
+        <p>Data de criação: 04:20 31/02/2120</p>
+        <p>Data de modificação: 04:20 31/02/2120</p>
+        <p>Último login: 04:20 31/02/2120</p>
+    </div>
+
+    <a href="#">Logout</a>
+</div>
