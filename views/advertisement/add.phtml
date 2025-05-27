@@ -1,1 +1,20 @@
-Novo Anuncio
+<form>
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Titulo</label>
+    <input type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+  </div>
+  <div class="form-floating">
+    <textarea class="form-control" placeholder="Escreva sua descrição" id="descricao"></textarea>
+    <label for="descricao">Descrição</label>
+    </div>
+    <div class="mb-3 form-check">
+        <select id="inputState" class="input" name="status" class="form-select" aria-label="Default select example">
+            <option selected disabled>Selecione</option>
+            <option>Publicado</option>
+            <option>Rascunho</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
