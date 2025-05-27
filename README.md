@@ -14,11 +14,11 @@ Essa estrutura já está dockerizada, então basta ter o docker compose rodando 
 
 Primeiro basta clonar o repositório
 
-`git clone https://github.com/digitalcollege-classes/php-03`
+`git clone https://github.com/digitalcollege-classes/sistema-classificados`
 
 Agora entre na pasta com o terminal 
 
-`cd php-03`
+`cd sistema-classificados`
 
 E agora basta rodar o docker
 
@@ -28,32 +28,35 @@ Pronto,é sucesso!
 
 Acesse o http://localhost:8080
 
-## Como acessar os containers do Docker
-### Para acessar o container do mysql
+## Como contribuir com o GIT
+
+1. **Passo 1:** Atualizar a main
 ```shell
-docker compose mysql exec bash
+git checkout main
+git pull origin main
 ```
 
-ou
-
+2. **Passo 2:** Criar a nova branch
 ```shell
-docker exec -it <id> bash
+git checkout -b <nome-da-branch>
 ```
 
-O mesmo de cima vale pro container do `php`
+3. **Passo 3:** Realizar as alterações da tarefa
 
-## Como migrar o banco de dados
-Execute no seu terminal:
+> Códigos: HTML, CSS, PHP, etc
+
+4. **Passo 4:** Commitar e abrir o PR
 ```shell
-make migrar-database
-```
-## Como cadastrar dados falsos
-Execute no seu terminal:
-```shell
-make load-fixtures
+git add .
+git commit -m "O que a alteração faz?"
+git push origin <nome-da-branch>
 ```
 
+Ao fazer isso vai aparecer um link para abrir o pull request
 
-## Para alterar alguma coisa
-
-Dentro da pasta `public` existe um arquivo `index.php`, altere-o, salve e dê um F5 lá no navegaro <http://localhost:8080>
+5. **Passo 5:** Caso haja alteração a serem feitas
+```shell
+git add .
+git commit --amend --no-edit
+git push origin <nome-da-branch> -f
+```
