@@ -6,11 +6,15 @@ namespace App\Controller;
 
 abstract class AbstractController
 {
-    public function render(string $view, array $data = []): void 
+    public function render(string $view, array $data = [], bool $showNavbar = true): void
     {
         extract($data);
 
         include '../views/_layouts/head.phtml';
+
+        if ($showNavbar) {
+            include '../views/_layouts/navbar.phtml';
+        }
 
         include "../views/{$view}.phtml";
 

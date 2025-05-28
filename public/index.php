@@ -30,8 +30,8 @@ $routes = [
 if (false === isset($routes[$url])) {
     (new ErrorController())->pageNotFound();
     exit; //matar a aplicação
-} 
+}
 
-[$controller, $method] = $routes[$url]; 
+[$controller, $method] = $routes[$url];
 
-(new $controller())->$method(); 
+(new $controller())->$method();
