@@ -7,6 +7,4 @@ return [
     '/usuarios/adicionar' => [UserController::class, 'add'],
 
     '/usuario/perfil' => [UserController::class, 'profile'],
-
-    '/'
 ];
