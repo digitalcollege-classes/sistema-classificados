@@ -1,33 +1,55 @@
-<section>
+<section class="card card-body mt-5">
     <h2>Listar Anuncio</h2>
-
     <hr>
-
-<div>
-        <table>
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
                 <tr>
                     <th>Title</th>
                     <th>Descrição</th>
                     <th>Status</th>
-                    <th>Ações</th>
+                    <th class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Carro 2020</td>
-                    <td>Carro ano 2020 da Raimundinha zero bala </td>
-                    <td>Rascunho</td>
-                    <td>
-                        <divrole='group' aria-label='Basic mixed styles example'>
-                            <button type='button'>Editar</button>
-                            <button type='button'>Excluir</button>
-                        </div>
-                    </td>
-                </tr>
+                <?php
+                    // include '../src/conexao.php';
+
+                    $dados = [
+                        [
+                            'id' => 1,
+                            'title' => 'Carro 2020',
+                            'descricao' => 'Carro ano 2020 da Raimundinha zero bala',
+                            'status' => 'Rascunho'
+                        ],
+                        [
+                            'id' => 2,
+                            'title' => 'Motoca 2020',
+                            'descricao' => 'MOtoca ano 2020 da Alex',
+                            'status' => 'Rascunho'
+                        ]
+                    ];
+
+                    foreach ($dados as $cada) {
+                        $id = $cada['id'];
+                        $json = htmlspecialchars(json_encode($cada), ENT_QUOTES, 'UTF-8');
+
+                        echo "
+                            <tr>
+                                <td>{$cada['title']}</td>
+                                <td>{$cada['descricao']}</td>
+                                <td>{$cada['status']}</td>
+                                <td class='text-center'>
+                                    <div class='btn-group' role='group' aria-label='Basic mixed styles example'>
+                                        <button type='button' class='btn btn-warning'>Editar</button>
+                                        <button type='button' class='btn btn-danger'>Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ";
+                    }
+                ?> 
             </tbody>
         </table>
     </div>
-
-    
 </section>
