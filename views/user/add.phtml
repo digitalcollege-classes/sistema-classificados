@@ -1,31 +1,49 @@
 <section class="card card-body mt-5">
-<form>
-<div class="row">
-    <div class="col">
-        <img src="/assets/images/add-advertisement.svg" width="80%" alt=""
-    </div>
-        
-    <label for="exampleInputEmail1" class="form-label">Nome</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text"></div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Endereço de email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text"></div>
+  <h2>Cadastre se</h2>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <img src="/public/assets/images/woman.jpg" width="80%" alt="">
+    </div>
+    <div class="col">
+      <form>
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input placeholder="Digite seu nome aqui" type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu email aqui">
+          <small id="emailHelp" class="form-text text-muted">
+                Nunca compartilharemos seu e-mail com mais ninguém.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha aqui">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Verifique me</label>
+        </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+
+        <div class="mb-3">
+          <label for="descricao">Descrição</label>
+          <textarea class="form-control" placeholder="Escreva sua descrição" id="descricao"></textarea>
+        </div>
+
+          <div class="mb-3">
+            <label for="inputState">Status do Anuncio</label>
+              <select id="inputState" name="status" class="form-select" aria-label="Default select example">
+                  <option selected disabled>Selecione</option>
+                  <option>Publicado</option>
+                  <option>Rascunho</option>
+              </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">PRONTO</button>
+      </form>
+    </div>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Checar</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
-    <label class="form-check-label" for="exampleCheck1">Confira me</label>
-  </div>
-</div>
-  
-</form>
 </section>
