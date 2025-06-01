@@ -1,37 +1,73 @@
-<h1>Listar Categorias</h1>
+<?php
+$perPage = 10;
+$total = count($categories);
+$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$start = ($page - 1) * $perPage;
+$categoriesPage = array_slice($categories, $start, $perPage);
+$totalPages = ceil($total / $perPage);
+?>
 
-<?php if (empty($categories)): ?>
-    <p>Nenhuma categoria cadastrada.</p>
-<?php else: ?>
-    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-        <thead style="background-color: #f2f2f2;">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Foto</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($categories as $category): ?>
-                <tr>
-                    <td><?= htmlspecialchars($category['id']) ?></td>
-                    <td><?= htmlspecialchars($category['name']) ?></td>
-                    <td><?= htmlspecialchars($category['description']) ?></td>
-                    <td>
+<section class="container my-4">
+    <h1 class="mb-4">Categorias de Anúncios</h1>
+    <?php if (empty($categories)): ?>
+        <div class="alert alert-info">Nenhuma categoria cadastrada.</div>
+    <?php else: ?>
+        <div class="row g-4">
+            <?php foreach ($categoriesPage as $category): ?>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2">
+                    <div class="card h-100 shadow-sm">
                         <?php if (!empty($category['photo'])): ?>
-                            <img src="<?= htmlspecialchars($category['photo']) ?>" alt="Foto" width="60" style="border-radius: 4px;">
+                            <img src="<?= htmlspecialchars($category['photo']) ?>" class="card-img-top img-fluid" alt="Foto da categoria"
+                                style="height: 160px; object-fit: cover; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
                         <?php else: ?>
-                            <span style="color: #888;">Sem foto</span>
+                            <div class="card-img-top d-flex align-items-center justify-content-center bg-light"
+                                style="height: 160px; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+                                    <span class="text-muted">Sem foto</span>
+                            </div>
                         <?php endif; ?>
-                    </td>
-                    <td>
-                        <a href="/categoria/editar/<?= urlencode($category['id']) ?>">Editar</a> |
-                        <a href="/categoria/excluir/<?= urlencode($category['id']) ?>" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
-                    </td>
-                </tr>
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($category['name']) ?></h5>
+                            <p class="card-text mb-4" style="
+                                display: -webkit-box;
+                                -webkit-line-clamp: 4;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                min-height: 4.5em;
+                                max-height: 6em;
+                            ">
+                                <?= htmlspecialchars($category['description']) ?>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end gap-2">
+                            <a href="/categoria/editar/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-primary d-flex align-items-center gap-1">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                            <a href="/categoria/excluir/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-danger d-flex align-items-center gap-1"
+                                onclick="return confirm('Tem certeza que deseja excluir?')">
+                                    <i class="bi bi-trash"></i> Excluir
+                            </a>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif; ?>
+        </div>
+
+        <!-- Paginação Bootstrap -->
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a>
+                </li>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+                <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>">Próxima</a>
+                </li>
+            </ul>
+        </nav>
+    <?php endif; ?>
+</section>
