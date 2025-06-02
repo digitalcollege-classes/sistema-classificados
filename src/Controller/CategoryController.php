@@ -81,46 +81,6 @@ final class CategoryController extends AbstractController
 
     public function add(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'] ?? '';
-            $description = $_POST['description'] ?? '';
-            $photo = $_FILES['photo'] ?? null;
-
-            $photoPath = '';
-            if ($photo && $photo['error'] === UPLOAD_ERR_OK) {
-                // Limite de tamanho (20MB)
-                if ($photo['size'] > 20 * 1024 * 1024) {
-                    $_SESSION['error'] = 'A imagem deve ter no máximo 20MB.';
-                    header('Location: /categorias/adicionar');
-                    exit;
-                }
-
-                $uploadDir = __DIR__ . '/../../public/images/category-img/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
-                }
-                $extension = strtolower(pathinfo($photo['name'], PATHINFO_EXTENSION));
-                $safeName = preg_replace('/[^a-z0-9\-]/i', '_', strtolower($name));
-                $filename = $safeName . '_' . time() . '.' . $extension;
-                $destination = $uploadDir . $filename;
-
-                if (move_uploaded_file($photo['tmp_name'], $destination)) {
-                    $photoPath = '/images/category-img/' . $filename;
-                }
-            }
-
-            $_SESSION['categories'][] = [
-                'id' => rand(100, 999),
-                'name' => $name,
-                'description' => $description,
-                'photo' => $photoPath,
-            ];
-
-            header('Location: /categorias');
-            exit;
-        }
-
         $this->render(self::VIEW_ADD);
     }
-
 }
