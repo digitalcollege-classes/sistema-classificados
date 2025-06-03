@@ -8,11 +8,20 @@ $totalPages = ceil($total / $perPage);
 ?>
 
 <section class="container my-4">
-    <h1 class="mb-4">Categorias de Anúncios</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="mb-4" style="margin: 0;">Categorias de Anúncios</h1>
+        <a href="/categorias/adicionar" class="btn btn-primary" style="display: flex; align-items: center; gap: 0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" fill="#FFF">
+                <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+            </svg>
+            Adicionar Categoria
+        </a>
+    </div>
+
     <?php if (empty($categories)): ?>
         <div class="alert alert-info">Nenhuma categoria cadastrada.</div>
     <?php else: ?>
-        <div class="row g-4">
+        <div class="row g-4 my-2">
             <?php foreach ($categoriesPage as $category): ?>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2">
                     <div class="card h-100 shadow-sm">
