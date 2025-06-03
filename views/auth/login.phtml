@@ -1,16 +1,77 @@
-<form action="">
-    <h3>Pagina de Login </h3>
-    <label for="first">Nome de usuário:</label> <br>
-<input type="text" id="first" name="first" 
-    placeholder="Digite seu nome de usuário" obrigatório> <br>
+<style>
+  nav, .menu, #menu {
+    display: none !important;
+  }
+  body, html {
+    height: 100%;
+    background: linear-gradient(135deg, #74EBD5 0%, #ACB6E5 100%);
+  }
+</style>
 
-<label for="password">Senha:</label><br>
-<input type="password" id="password" name="password" 
-    placeholder="Digite sua senha" obrigatório><br>
+<section class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="row w-100 justify-content-center">
+    <div class="col-12 col-sm-8 col-md-5 col-lg-4">
+      <div class="card shadow p-4">
+        <form id="loginForm" novalidate>
+          <!-- <h3 class="mb-4 text-center">Login</h3> -->
+          <div class="text-center mb-4">
+            <i class="bi bi-megaphone-fill" style="font-size: 2.5rem; color: #0D6EFD;"></i>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail:</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu e-mail" required>
+            <div class="invalid-feedback">
+              Por favor, insira um e-mail válido.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Senha:</label>
+            <div class="input-group">
+              <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required minlength="4">
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword" tabindex="-1">
+                <i class="bi bi-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback">
+              Por favor, insira uma senha válida (mínimo 4 caracteres).
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
- 
-  <button type="submit" class="btn btn-primary">Enviar</button>
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-</form>
+<script>
+  // Validação Bootstrap customizada
+  (function () {
+    'use strict'
+    var form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })();
 
-
+  // Exibir/ocultar senha
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    var passwordInput = document.getElementById('password');
+    var eyeIcon = document.getElementById('eyeIcon');
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.classList.remove('bi-eye');
+      eyeIcon.classList.add('bi-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.classList.remove('bi-eye-slash');
+      eyeIcon.classList.add('bi-eye');
+    }
+  });
+</script>
