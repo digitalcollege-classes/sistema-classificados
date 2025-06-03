@@ -1,1 +1,23 @@
-<h1>Nova Categoria</h1>
+<section>
+    <h1>Nova Categoria</h1>
+    <form id="categoryForm" action="/categorias/adicionar" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" required rows="3"></textarea>
+        </div>
+        <div>
+            <label for="photo">Foto:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+        </div>
+        <div id="photoError" hidden></div>
+        <div>
+            <button id="saveBtn" type="submit">
+                Salvar
+            </button>
+        </div>
+    </form>
+</section>
