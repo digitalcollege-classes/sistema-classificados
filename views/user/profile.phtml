@@ -1,47 +1,103 @@
-<style>
-.perfil {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+<?php
+// include '../src/conexao.php';
 
-.perfil-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    justify-self: center;
-}
-</style>
+$dadosUser = [
+    [
+        'nome' => 'Sujiro Kimimami',
+        'email' => 'sujirokimimami@gmail.com',
+        'senha' => 'aqui tem que ter um hash!',
+        'dataCriacao' => '31/02/2120 às 04:20',
+        'dataModificacao' => '31/02/2120 às 04:20',
+        'ultimoLogin' => '31/02/2120 às 04:20',
+    ],
+];
+?>
 
-<div class="perfil">
-    <h1>Pernil</h1>
-    <img src="/assets/images/sujiro.jpeg" alt="Sujiro Kimimami" height="200" width="200" />
-    <h3>Sujiro Kimimami</h3>
+<section class="my-5">
+    <div class="container">
+        <div class="card shadow-lg rounded-4 border-0 mx-auto" style="max-width: 950px;">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top-4">
+                <h3 class="mb-0 fw-bold">Perfil do Usuário</h3>
+                <a href="#" class="btn btn-danger btn-sm rounded-pill px-4">Logout</a>
+            </div>
 
-    <form action="POST" class="perfil-form">
-        <div>
-            <label for="Nome">Nome</label>
-            <input id="nome" name="nome" type="text">
+            <div class="card-body p-5">
+                <div class="text-center mb-5">
+                    <img
+                        src="/assets/images/sujiro.jpeg"
+                        alt="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
+                        class="rounded-circle shadow border border-4 border-primary img-fluid"
+                        style="width: 140px; height: 140px; object-fit: cover;"
+                    >
+                    <h2 class="mt-3 fw-bold text-primary"><?= htmlspecialchars($dadosUser[0]['nome']); ?></h2>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-md-6">
+                        <form method="POST" class="needs-validation" novalidate>
+                            <div class="mb-4">
+                                <label for="nome" class="form-label text-secondary fw-semibold">Nome</label>
+                                <input
+                                    id="nome"
+                                    name="nome"
+                                    type="text"
+                                    class="form-control form-control-lg rounded-pill shadow-sm"
+                                    value="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
+                                    required
+                                >
+                                <div class="invalid-feedback ps-3">Por favor, insira seu nome.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="form-label text-secondary fw-semibold">Email</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    class="form-control form-control-lg rounded-pill shadow-sm"
+                                    value="<?= htmlspecialchars($dadosUser[0]['email']); ?>"
+                                    required
+                                >
+                                <div class="invalid-feedback ps-3">Por favor, insira um email válido.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="senha" class="form-label text-secondary fw-semibold">Senha</label>
+                                <input
+                                    id="senha"
+                                    name="senha"
+                                    type="password"
+                                    class="form-control form-control-lg rounded-pill shadow-sm"
+                                    placeholder="••••••••"
+                                >
+                                <small class="text-muted ps-2">Deixe em branco para manter a senha atual.</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm">Salvar</button>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="bg-light rounded-4 p-4 shadow-sm w-100">
+                            <h5 class="text-primary fw-semibold mb-4 text-center">Informações da Conta</h5>
+                            <ul class="list-unstyled fs-6 text-secondary mb-0">
+                                <li class="d-flex justify-content-between mb-3">
+                                    <strong>Data de criação:</strong>
+                                    <span><?= htmlspecialchars($dadosUser[0]['dataCriacao']); ?></span>
+                                </li>
+                                <li class="d-flex justify-content-between mb-3">
+                                    <strong>Data de modificação:</strong>
+                                    <span><?= htmlspecialchars($dadosUser[0]['dataModificacao']); ?></span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Último login:</strong>
+                                    <span><?= htmlspecialchars($dadosUser[0]['ultimoLogin']); ?></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="Email">Email</label>
-            <input id="email" name="email" type="email">
-        </div>
-        <div>
-            <label for="Senha">Senha</label>
-            <input id="senha" name="senha" type="password">
-        </div>
-
-        <input type="submit" value="Salvar">
-    </form>
-
-    <div>
-        <p>Data de criação: 04:20 31/02/2120</p>
-        <p>Data de modificação: 04:20 31/02/2120</p>
-        <p>Último login: 04:20 31/02/2120</p>
     </div>
-
-    <a href="#">Logout</a>
-</div>
+</section>
