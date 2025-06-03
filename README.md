@@ -68,3 +68,14 @@ Acesse o <http://localhost:8080>
     git commit --amend --no-edit
     git push origin <nome-da-branch> -f
     ```
+
+    
+### Proceso de Rebase
+Caso precise/queira atualizar seu branch, com as coisas que rolaram enquanto você fazia, faça isso:
+
+**Obs:** Voce não pode ter nada no `git status`
+
+```shell
+git remote update
+git rebase origin/main
+```
