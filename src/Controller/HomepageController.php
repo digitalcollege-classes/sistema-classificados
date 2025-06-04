@@ -11,7 +11,7 @@ final class HomepageController extends AbstractController
     public function index(): void
     {
         $this->render(self::VIEW_HOME, [
-            'user' => 'Sugiro Kimimami',
+            'user' => 'Jorge',
         ]);
     }
 }
