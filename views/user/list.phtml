@@ -1,5 +1,6 @@
 <section class= "card card-body mt-5">
-    <h1 class="mb-4">Listar Usuários</h1>
+    <h1 class="mb-4">Listar Usuários/Anunciantes</h1>
+    <hr>
     <div class= "table-responsive">
         <table class="table table-striped table-hover">
         <thead class="table-dark" >
@@ -16,25 +17,24 @@
             </tr>
         </thead>
         <tbody>
-
-            <?php foreach ($usuarios as $usuario): ?>              
-                
-                <tr>
-                    <td><?=$usuario['id']?></td>
-                    <td><?=$usuario['status']?></td>
-                    <td><?=$usuario['name']?></td>
-                    <td><?=$usuario['type']?></td>
-                    <td><?=$usuario['photo']?></td>
-                    <td><?=$usuario['data-last-login']?></td>
-                    <td><?=$usuario['data-add']?></td>
-                    <td><?=$usuario['data-edit']?></td>
-                    <td>
-                        <a href='' class='btn btn-warning btn-sm'>Editar</a>
-                        <a href='' class='btn btn-danger btn-sm'>Deletar</a>
-                    </td>
-                </tr>
-            <?php endforeach?>
-        </tbody>
-    </table>
+          <tbody>
+                <?php foreach ($usuarios as $usuario): ?>                
+                    <tr>
+                        <td><?=$usuario['id']?></td>
+                        <td><?=$usuario['status']?></td>
+                        <td><?=$usuario['name']?></td>
+                        <td><?=$usuario['type']?></td>
+                        <td><?=$usuario['photo']?></td>
+                        <td><?=$usuario['data-last-login']?></td>
+                        <td><?=$usuario['data-add']?></td>
+                        <td><?=$usuario['data-edit']?></td>
+                        <td class="text-center" >
+                            <a href='' class='btn btn-warning btn-sm'>Editar</a>
+                            <a href='' class='btn btn-danger btn-sm'>Deletar</a>
+                        </td>
+                    </tr>
+                <?php endforeach?>
+            </tbody>
+        </table>
     </div>
 </section>
