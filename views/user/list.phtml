@@ -1,22 +1,23 @@
-<section class="card card-body mt-5">
-    <h1>Listar Anunciantes</h1>
-     <hr>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover" >
-            <thead class="table-dark">
-                <tr>
-                    <th>id</th>
-                    <th>status</th>
-                    <th>Nome</th>
-                    <th>tipo</th>
-                    <th>foto</th>
-                    <th>ultimo-login</th>
-                    <th>adicionado</th>
-                    <th>editado</th>
-                    <th class="text-center">actions</th>
-                </tr>
-            </thead>
-            <tbody>
+<section class= "card card-body mt-5">
+    <h1 class="mb-4">Listar Usuários/Anunciantes</h1>
+    <hr>
+    <div class= "table-responsive">
+        <table class="table table-striped table-hover">
+        <thead class="table-dark" >
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Foto</th>
+                <th>Último Login</th>
+                <th>Adicionado</th>
+                <th>Editado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tbody>
                 <?php foreach ($usuarios as $usuario): ?>                
                     <tr>
                         <td><?=$usuario['id']?></td>
