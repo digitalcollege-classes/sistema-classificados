@@ -22,6 +22,7 @@ $routes = [
     ... routes('auth'),
     ... routes('advertisement'),
     ... routes('category'),
+    ... routes('advertiser'),
 ];
 
 // CRUD Advertisement
