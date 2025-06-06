@@ -1,0 +1,56 @@
+<section class="card card-body mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Anunciantes</h2>
+        <a href="/anunciantes/novo" class="btn btn-primary">Novo Anunciante</a>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Documento</th>
+                    <th>Telefone</th>
+                    <th>Status</th>
+                    <th width="280">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (isset($advertisers) && !empty($advertisers)) : ?>
+                    <?php foreach ($advertisers as $advertiser) : ?>
+                        <tr>
+                            <td><?= $advertiser['name'] ?></td>
+                            <td><?= $advertiser['email'] ?></td>
+                            <td><?= $advertiser['document'] ?></td>
+                            <td><?= $advertiser['phone'] ?></td>
+                            <td>
+                                <span class="badge <?= $advertiser['status'] === 'ativo' ? 'bg-success' : 'bg-danger' ?>">
+                                    <?= ucfirst($advertiser['status']) ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="/anunciantes/editar" class="btn btn-sm btn-primary" style="width: 80px">Editar</a>
+                                    <?php if ($advertiser['status'] === 'ativo') : ?>
+                                        <a href="/anunciantes/desativar" class="btn btn-sm btn-warning" style="width: 80px">Desativar</a>
+                                    <?php else : ?>
+                                        <a href="/anunciantes/ativar" class="btn btn-sm btn-success" style="width: 80px">Ativar</a>
+                                    <?php endif; ?>
+                                    <a href="/anunciantes/deletar" class="btn btn-sm btn-danger" style="width: 80px" 
+                                       onclick="return confirm('Tem certeza que deseja excluir este anunciante?')">
+                                        Excluir
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum anunciante cadastrado.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</section> 
