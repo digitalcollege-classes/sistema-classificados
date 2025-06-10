@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
+namespace App\Entity;
 
-use App\Enum\AdvertisementStatusEnum;
+use App\Enum\AdvertiserStatusEnum;
 use DateTime;
 use Ramsey\Uuid\Uuid;
 
 class Advertiser
 {
-    private string $id;
+    private int $id;
     private string $name;
     private string $email;
     private string $document;
