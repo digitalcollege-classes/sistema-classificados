@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use App\Enum\Status;
+use App\Enum\AdvertisementStatusEnum;
 use DateTime;
 use Ramsey\Uuid\Uuid;
 
@@ -15,7 +15,7 @@ class Advertiser
     private string $email;
     private string $document;
     private string $phone;
-    private Status $status;
+    private AdvertisementStatusEnum $status;
     private DateTime $createdAt;
     private DateTime $updatedAt;
 
@@ -30,7 +30,7 @@ class Advertiser
         $this->email = $email;
         $this->document = $document;
         $this->phone = $phone;
-        $this->status = Status::INACTIVE; // Valor padrão INACTIVE
+        $this->status = AdvertisementStatusEnum::INACTIVE; // Valor padrão INACTIVE
         $this->createdAt = new DateTime();
         $this->updatedAt = new DateTime();
     }
@@ -84,25 +84,25 @@ class Advertiser
         $this->updateTimestamps();
     }
 
-    public function getStatus(): Status
+    public function getStatus(): AdvertisementStatusEnum
     {
         return $this->status;
     }
 
     public function isActive(): bool
     {
-        return $this->status === Status::ACTIVE;
+        return $this->status === AdvertisementStatusEnum::ACTIVE;
     }
 
     public function activate(): void
     {
-        $this->status = Status::ACTIVE;
+        $this->status = AdvertisementStatusEnum::ACTIVE;
         $this->updateTimestamps();
     }
 
     public function deactivate(): void
     {
-        $this->status = Status::INACTIVE;
+        $this->status = AdvertisementStatusEnum::INACTIVE;
         $this->updateTimestamps();
     }
 
