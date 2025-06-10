@@ -2,22 +2,41 @@
 
 declare(strict_types=1);
 
-namespace App\Model;
+namespace App\Entity;
 
-use App\Enum\AdvertisementStatusEnum;
+use App\Enum\AdvertiserStatusEnum;
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
+#[ORM\Entity]
 class Advertiser
 {
+    #[ORM\Id]
+    #[ORM\Column(type: "string", length: 36)]
     private string $id;
+
+    #[ORM\Column(length: 100)]
     private string $name;
+
+    #[ORM\Column(length: 100)]
     private string $email;
+
+    #[ORM\Column(length: 20)]
     private string $document;
+
+    #[ORM\Column(length: 20)]
     private string $phone;
-    private AdvertisementStatusEnum $status;
+
+    #[ORM\Column(enumType: AdvertiserStatusEnum::class)]
+    private AdvertiserStatusEnum $status;
+
+    #[ORM\Column(type: "datetime")]
     private DateTime $createdAt;
+
+    #[ORM\Column(type: "datetime")]
     private DateTime $updatedAt;
+
 
     public function __construct(
         string $name,
