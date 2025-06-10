@@ -1,0 +1,123 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Model;
+
+use App\Enum\AdvertisementStatusEnum;
+use DateTime;
+use Ramsey\Uuid\Uuid;
+
+class Advertiser
+{
+    private string $id;
+    private string $name;
+    private string $email;
+    private string $document;
+    private string $phone;
+    private AdvertisementStatusEnum $status;
+    private DateTime $createdAt;
+    private DateTime $updatedAt;
+
+    public function __construct(
+        string $name,
+        string $email,
+        string $document,
+        string $phone
+    ) {
+        $this->id = Uuid::uuid4()->toString();
+        $this->name = $name;
+        $this->email = $email;
+        $this->document = $document;
+        $this->phone = $phone;
+        $this->status = AdvertisementStatusEnum::INACTIVE; // Valor padrão INACTIVE
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+        $this->updateTimestamps();
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+        $this->updateTimestamps();
+    }
+
+    public function getDocument(): string
+    {
+        return $this->document;
+    }
+
+    public function setDocument(string $document): void
+    {
+        $this->document = $document;
+        $this->updateTimestamps();
+    }
+
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+        $this->updateTimestamps();
+    }
+
+    public function getStatus(): AdvertisementStatusEnum
+    {
+        return $this->status;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === AdvertisementStatusEnum::ACTIVE;
+    }
+
+    public function activate(): void
+    {
+        $this->status = AdvertisementStatusEnum::ACTIVE;
+        $this->updateTimestamps();
+    }
+
+    public function deactivate(): void
+    {
+        $this->status = AdvertisementStatusEnum::INACTIVE;
+        $this->updateTimestamps();
+    }
+
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    private function updateTimestamps(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+} 
