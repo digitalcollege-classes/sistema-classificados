@@ -82,6 +82,13 @@ git rebase origin/main
 
 ### Comandos uteis
 
+##### Entrar no container
+Para entrar no container:
+```shell
+docker compose exec -it php bash
+```
+
+##### Modificar o esquema do banco de dados:
 > Antes de mais nada, **entre no container** do PHP
 
 Para modificar o esquema do banco de dados:
