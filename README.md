@@ -92,21 +92,21 @@ docker compose exec -it php bash
 <details>
     <summary>Entrar no MySQL</summary>
     
-    Primeiro, entre no container do mysql    
-    ```shell
-    docker compose exec -it mysql bash
-    ```
+Primeiro, entre no container do mysql    
+```shell
+docker compose exec -it mysql bash
+```
 
-    Agora, logue no mysql
-    ```shell
-    mysql -u root -proot
-    ```
+Agora, logue no mysql
+```shell
+mysql -u root -proot
+```
 
-    
-    Entre no banco de dados
-    ```shell
-    USE db_name;
-    ```
+
+Entre no banco de dados
+```shell
+USE db_name;
+```
 </details>
 
 ##### Modificar o esquema do banco de dados:
