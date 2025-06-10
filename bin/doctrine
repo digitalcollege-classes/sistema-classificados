@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+
+$entityManager = require dirname(__DIR__) . '/doctrine.php';
+
+ConsoleRunner::run(
+    new SingleManagerProvider($entityManager)
+);

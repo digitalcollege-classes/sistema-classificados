@@ -79,3 +79,12 @@ Caso precise/queira atualizar seu branch, com as coisas que rolaram enquanto voc
 git remote update
 git rebase origin/main
 ```
+
+### Comandos uteis
+
+> Antes de mais nada, **entre no container** do PHP
+
+Para modificar o esquema do banco de dados:
+```shell
+php bin/doctrine orm:schema-tool:update --force
+```
