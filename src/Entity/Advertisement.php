@@ -5,18 +5,41 @@ namespace App\Entity;
 
 use DateTime;
 use App\Enum\AdvertisementStatusEnum;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class Advertisement
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private int $id;
+
+    #[ORM\Column(type: "integer")]
     private int $advertiserId;
+
+    #[ORM\Column(type: "integer")]
     private int $categoryId;
+
+    #[ORM\Column(length: 100)]
     private string $title;
+
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
+
+    #[ORM\Column(type: "float", nullable: true)]
     private ?float $price = null;
+
+    #[ORM\Column(enumType: AdvertisementStatusEnum::class)]
     private AdvertisementStatusEnum $status;
+
+    #[ORM\Column(type: "datetime", nullable: true)]
     private ?DateTime $publishedAt = null;
+
+    #[ORM\Column(type: "datetime")]
     private DateTime $createdAt;
+
+    #[ORM\Column(type: "datetime")]
     private DateTime $updatedAt;
 
     public function __construct(
