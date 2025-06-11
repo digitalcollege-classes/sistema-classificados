@@ -9,20 +9,25 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class Review
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
+
+    #[ORM\Column]
     private int $userId;
+
+    #[ORM\Column]
     private int $advertisementId;
+
+    #[ORM\Column]
     private int $rating;
 
-    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $comment = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTime $createdAt = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?\DateTime $updatedAt = null;
 
     public function getId(): int 
