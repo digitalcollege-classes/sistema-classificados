@@ -12,11 +12,11 @@ use Ramsey\Uuid\Uuid;
 #[ORM\Entity]
 class Advertiser
 {
-    #[ORM\Id]
-    #[ORM\Column(type: "string", length: 36)]
-    private string $id;
 
     #[ORM\Column(length: 100)]
+
+    private int $id;
+
     private string $name;
 
     #[ORM\Column(length: 100)]

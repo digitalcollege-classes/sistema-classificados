@@ -4,15 +4,26 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class Review
 {
-    private ?int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    private int $id;
     private int $userId;
     private int $advertisementId;
     private int $rating;
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $comment = null;
-    private ?\DateTime $createdAt;
-    private ?\DateTime $updatedAt;
+
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTime $createdAt = null;
+
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTime $updatedAt = null;
 
     public function getId(): int 
     { 
