@@ -1,23 +1,31 @@
-<section>
-    <h1>Nova Categoria</h1>
-    <form id="categoryForm" action="/categorias/adicionar" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <h1 class="mb-4 text-center fw-bold text-primary">Nova Categoria</h1>
+                    <form id="categoryForm" action="/categorias/adicionar" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">Nome</label>
+                            <input type="text" id="name" name="name" class="form-control form-control-lg" required placeholder="Digite o nome da categoria">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-semibold">Descrição</label>
+                            <textarea id="description" name="description" class="form-control form-control-lg" required rows="3" placeholder="Descreva a categoria"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="photo" class="form-label fw-semibold">Foto</label>
+                            <input type="file" id="photo" name="photo" class="form-control form-control-lg" accept="image/*" required>
+                        </div>
+                        <div id="photoError" class="text-danger mb-3" hidden></div>
+                        <div class="d-grid">
+                            <button id="saveBtn" type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-save me-2"></i>Salvar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="description">Descrição:</label>
-            <textarea id="description" name="description" required rows="3"></textarea>
-        </div>
-        <div>
-            <label for="photo">Foto:</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
-        </div>
-        <div id="photoError" hidden></div>
-        <div>
-            <button id="saveBtn" type="submit">
-                Salvar
-            </button>
-        </div>
-    </form>
+    </div>
 </section>
