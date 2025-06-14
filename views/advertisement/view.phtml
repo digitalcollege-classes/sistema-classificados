@@ -1,0 +1,216 @@
+<section class="container py-4">
+    <?php
+        $advertisement = [
+            'id' => 1,
+            'advertiserId' => 101,
+            'categoryId' => 5,
+            'title' => 'Título do Anúncio',
+            'description' => 'Descrição detalhada do anúncio. Este é um exemplo de descrição para demonstrar o layout da página de visualização.',
+            'price' => 45000.00,
+            'status' => \App\Enum\AdvertisementStatusEnum::ACTIVE,
+            'publishedAt' => new DateTime('2023-12-15'),
+            'createdAt' => new DateTime('2023-12-10'),
+            'updatedAt' => new DateTime('2023-12-14'),
+
+            'images' => [
+                'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1000&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1000&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop'
+            ],
+            'category' => 'Veículos',
+            'advertiser' => [
+                'name' => 'João Silva',
+                'phone' => '(85) 99999-8888',
+                'email' => 'joao.silva@email.com',
+                'whatsapp' => '(85) 99999-8888',
+                'memberSince' => new DateTime('2023-01-15')
+            ]
+        ];
+    ?>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="/advertisement/list" class="text-decoration-none"><?= htmlspecialchars($advertisement['category']) ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($advertisement['title']) ?></li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- Coluna de imagens e detalhes principais -->
+        <div class="col-lg-8">
+            <div class="position-relative mb-2">
+                <span class="badge bg-success rounded-pill px-3 py-2 fs-6 shadow-sm position-absolute top-0 end-0 mt-3 me-3 z-1">
+                    Ativo
+                </span>
+            </div>
+
+            <!-- Carrossel de imagens -->
+            <div id="carouselAnuncio" class="carousel slide mb-4 rounded-4 shadow overflow-hidden" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <?php foreach ($advertisement['images'] as $index => $image): ?>
+                        <button type="button" data-bs-target="#carouselAnuncio" data-bs-slide-to="<?= $index ?>" <?= $index === 0 ? 'class="active"' : '' ?>></button>
+                    <?php endforeach; ?>
+                </div>
+                <div class="carousel-inner">
+                    <?php foreach ($advertisement['images'] as $index => $image): ?>
+                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                            <img src="<?= htmlspecialchars($image) ?>" class="d-block w-100" style="height: 450px; object-fit: cover;" alt="Imagem do anúncio">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnuncio" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAnuncio" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            </div>
+
+            <!-- Título e descrição -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h1 class="fw-bold mb-3"><?= htmlspecialchars($advertisement['title']) ?></h1>
+                    <div class="d-flex align-items-center mb-4">
+                        <?php if ($advertisement['price']): ?>
+                            <div class="fs-2 fw-bold text-success me-auto">
+                                R$ <?= number_format($advertisement['price'], 2, ',', '.') ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="text-muted">
+                            <i class="bi bi-calendar3 me-1"></i> 
+                            Publicado em <?= $advertisement['publishedAt']->format('d/m/Y') ?>
+                        </div>
+                    </div>
+                    <h5 class="border-bottom pb-2 mb-3">Descrição</h5>
+                    <p class="fs-5 lh-lg"><?= nl2br(htmlspecialchars($advertisement['description'] ?? '')) ?></p>
+                </div>
+            </div>
+
+            <!-- Detalhes do anúncio -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="border-bottom pb-2 mb-3">
+                        <i class="bi bi-info-circle me-2"></i>Detalhes
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-tag-fill me-2 text-primary"></i>
+                                <span class="fw-medium">Categoria:</span>
+                                <span class="ms-2"><?= htmlspecialchars($advertisement['category']) ?></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-clock-history me-2 text-primary"></i>
+                                <span class="fw-medium">Criado em:</span>
+                                <span class="ms-2"><?= $advertisement['createdAt']->format('d/m/Y H:i') ?></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-arrow-clockwise me-2 text-primary"></i>
+                                <span class="fw-medium">Atualizado em:</span>
+                                <span class="ms-2"><?= $advertisement['updatedAt']->format('d/m/Y H:i') ?></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-hash me-2 text-primary"></i>
+                                <span class="fw-medium">ID:</span>
+                                <span class="ms-2"><?= $advertisement['id'] ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coluna lateral com informações do vendedor e ações -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow rounded-4 mb-4 sticky-lg-top" style="top: 20px;">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4">
+                        <i class="bi bi-person-circle me-2"></i>Informações do Vendedor
+                    </h5>
+                    
+                    <div class="text-center mb-4">
+                        <div class="avatar bg-primary bg-opacity-10 text-primary rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-person-fill fs-1"></i>
+                        </div>
+                        <h5 class="mb-0"><?= htmlspecialchars($advertisement['advertiser']['name']) ?></h5>
+                        <p class="text-muted small">Membro desde <?= $advertisement['advertiser']['memberSince']->format('M Y') ?></p>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mb-4">
+                        <a href="https://wa.me/<?= preg_replace('/\D/', '', $advertisement['advertiser']['whatsapp']) ?>" class="btn btn-success d-flex align-items-center justify-content-center" target="_blank">
+                            <i class="bi bi-whatsapp me-2 fs-5"></i> WhatsApp
+                        </a>
+                        <a href="tel:<?= preg_replace('/\D/', '', $advertisement['advertiser']['phone']) ?>" class="btn btn-outline-primary d-flex align-items-center justify-content-center">
+                            <i class="bi bi-telephone me-2"></i> Ligar
+                        </a>
+                        <a href="mailto:<?= htmlspecialchars($advertisement['advertiser']['email']) ?>" class="btn btn-outline-secondary d-flex align-items-center justify-content-center">
+                            <i class="bi bi-envelope me-2"></i> Email
+                        </a>
+                    </div>
+                    
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                        <div class="small">
+                            Nunca envie dinheiro ou compartilhe seus dados pessoais antes de verificar o anúncio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Não encontrei os icons no Material Icon -->
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        <i class="bi bi-share me-2"></i>Compartilhar
+                    </h5>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="#" class="btn btn-outline-primary rounded-circle p-2" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-info rounded-circle p-2" title="Twitter">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-success rounded-circle p-2" title="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle p-2" title="Copiar link">
+                            <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Anúncios relacionados -->
+    <div class="mt-5">
+        <h3 class="mb-4">Anúncios relacionados</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <?php for ($i = 1; $i <= 4; $i++): ?>
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                        <img src="https://source.unsplash.com/random/300x200?car,<?= $i ?>" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Anúncio relacionado">
+                        <div class="card-body">
+                            <h5 class="card-title">Anúncio relacionado <?= $i ?></h5>
+                            <p class="card-text text-success fw-bold">R$ <?= number_format(rand(10000, 50000), 2, ',', '.') ?></p>
+                            <p class="card-text text-truncate">Descrição breve do anúncio relacionado...</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="btn btn-outline-primary btn-sm w-100">Ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endfor; ?>
+        </div>
+    </div>
+</section>
