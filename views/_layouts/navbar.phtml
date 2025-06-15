@@ -1,50 +1,75 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <!-- Link para homepage (rota raiz) -->
-        <a class="navbar-brand" href="/">Classificados</a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm mb-4">
+    <div class="container">
+        <!-- Logo e nome do sistema -->
+        <a class="navbar-brand fw-bold text-primary d-flex align-items-center gap-2" href="/">
+            <span class="material-icons">sell</span>
+            Classificados
+        </a>
+        <!-- Botão para menu responsivo (mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="d-flex justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <!-- Menu principal -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center gap-2">
                 <!-- Link para página de anunciantes -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/anunciantes" role="button">
-                        Anunciantes
+                    <a class="nav-link fw-semibold d-flex align-items-center gap-1 text-secondary" href="/anunciantes">
+                        <span class="material-icons">groups</span> Anunciantes
                     </a>
                 </li>
-                
                 <!-- Link para página de anúncios -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/anuncios" role="button">
-                        Anúncios
+                    <a class="nav-link fw-semibold d-flex align-items-center gap-1 text-secondary" href="/anuncios">
+                        <span class="material-icons">campaign</span> Anúncios
                     </a>
                 </li>
-                
-                <!-- Link para página de Categorias -->
+                <!-- Link para página de categorias -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/categorias" role="button">
-                        Categorias
+                    <a class="nav-link fw-semibold d-flex align-items-center gap-1 text-secondary" href="/categorias">
+                        <span class="material-icons">category</span> Categorias
                     </a>
                 </li>
-                
+                <!-- Dropdown de conta do usuário -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Opções ≡
+                    <a class="nav-link fw-semibold dropdown-toggle d-flex align-items-center gap-1 text-secondary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="material-icons">account_circle</span> Conta
+                        <span id="dropdownArrow" class="material-icons">chevron_right</span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <!-- Link para perfil do usuário -->
-                        <li><a class="dropdown-item" href="/usuario/perfil">Perfil</a></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2" href="/usuario/perfil">
+                                <span class="material-icons">person</span> Perfil
+                            </a>
+                        </li>
                         <li><hr class="dropdown-divider"></li>
-                        
                         <!-- Link para logout -->
-                        <li><a class="dropdown-item" href="/logout">Sair</a></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="/logout">
+                                <span class="material-icons">logout</span> Sair
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdownToggle = document.getElementById('navbarDropdown');
+    const dropdownMenu = dropdownToggle.nextElementSibling;
+    const arrow = document.getElementById('dropdownArrow');
+
+    dropdownToggle.addEventListener('show.bs.dropdown', function () {
+        arrow.textContent = 'expand_more';
+    });
+
+    dropdownToggle.addEventListener('hide.bs.dropdown', function () {
+        arrow.textContent = 'chevron_right';
+    });
+});
+</script>
