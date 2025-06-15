@@ -1,7 +1,197 @@
-body {
-    background-color: #EFEFEF;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-i {
-    vertical-align: bottom;
+/* === Variáveis Globais === */
+:root {
+  --primary: #1565C0;
+  --secondary: #6C757D;
+  --danger: #E53935;
+  --success: #43A047;
+  --background: #EFEFEF;
+  --border-radius: 0.5rem;
+}
+
+/* === Body === */
+body {
+  background-color: var(--background);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* === Navbar === */
+.navbar {
+  border-radius: var(--border-radius);
+}
+.navbar-nav .nav-link {
+  transition: color 0.2s;
+}
+.navbar-nav .nav-link,
+.navbar-nav .nav-link:visited {
+  color: var(--secondary);
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link.active {
+  color: var(--primary) !important;
+  background: none;
+  text-decoration: none;
+}
+.navbar-nav .nav-link .ti {
+  vertical-align: middle;
+}
+
+/* === Navbar Dropdown Custom === */
+.dropdown-menu {
+  min-width: 200px;
+  max-width: 90vw;
+  padding: 0.5rem 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.08);
+  left: auto;
+  right: 0;
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu .dropdown-item {
+  color: var(--secondary);
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.15s, color 0.15s;
+  border-radius: 0.5rem;
+  background: transparent;
+}
+
+.dropdown-menu .dropdown-item:active,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:hover {
+  background: var(--background);
+  color: var(--primary);
+}
+
+.dropdown-menu .dropdown-item.text-danger {
+  color: var(--danger);
+}
+
+.dropdown-menu .dropdown-item.text-danger:hover {
+  background: #FFEAEA;
+  color: var(--danger);
+}
+
+.dropdown-divider {
+  margin: 0.25rem 0;
+}
+
+.navbar .dropdown-toggle::after {
+    display: none !important;
+}
+
+/* === Tabelas === */
+.table thead th {
+  vertical-align: middle;
+  font-weight: 600;
+}
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* === Botões === */
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+}
+.btn-danger {
+  background-color: var(--danger);
+  border: none;
+}
+.btn-warning {
+  background-color: #FFC107;
+  border: none;
+  color: #212529;
+}
+
+/* === Cards === */
+.card {
+  border-radius: var(--border-radius);
+}
+
+/* === Utilidades === */
+.rounded-4 { border-radius: 1.5rem; }
+.rounded-pill { border-radius: 50rem; }
+.shadow-lg { box-shadow: 0 1rem 3rem rgba(0,0,0,.175); }
+
+/* === Login Page === */
+.login-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74EBD5 0%, #ACB6E5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Categoria Card Image === */
+.category-card-img {
+  height: 160px;
+  object-fit: cover;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+/* === Ocultar Navbar em Login === */
+.hide-navbar {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  .navbar-nav .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-nav .nav-link {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    display: flex;
+  }
+  .navbar-nav .dropdown-menu {
+    position: static;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0 0 0;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-nav .dropdown-menu .dropdown-item {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .dropdown-menu .dropdown-item:hover,
+  .dropdown-menu .dropdown-item:focus,
+  .dropdown-menu .dropdown-item.active {
+    background: none;
+    color: var(--primary);
+  }
 }
