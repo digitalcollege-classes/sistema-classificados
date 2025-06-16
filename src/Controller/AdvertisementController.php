@@ -10,7 +10,8 @@ final class AdvertisementController extends AbstractController
 {
     public const string VIEW_LIST = 'advertisement/list';
     public const string VIEW_ADD = 'advertisement/add';  
-    public const string VIEW_EDIT = 'advertisement/edit';  
+    public const string VIEW_EDIT = 'advertisement/edit';
+    public const string VIEW_VIEW = 'advertisement/view';    
 
     public function list(): void
     {
@@ -34,6 +35,11 @@ final class AdvertisementController extends AbstractController
     public function update(): void
     {
         $this->render(self::VIEW_EDIT);
+    }
+
+    public function view(): void
+    {
+        $this->render(self::VIEW_VIEW);
     }
 
     public function remove(): void

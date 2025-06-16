@@ -8,4 +8,5 @@ return [
     '/anuncios/adicionar' => [AdvertisementController::class, 'add'],
     '/anuncios/excluir' => [AdvertisementController::class, 'remove'],
     '/anuncios/editar' => [AdvertisementController::class, 'update'],
+    '/anuncios/view' => [AdvertisementController::class, 'view'],
 ];
