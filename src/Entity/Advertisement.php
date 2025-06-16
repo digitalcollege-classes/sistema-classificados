@@ -11,7 +11,7 @@ use App\Enum\AdvertisementStatusEnum;
 #[ORM\Entity]
 class Advertisement
 {
-     #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
 
     private int $advertiserId;

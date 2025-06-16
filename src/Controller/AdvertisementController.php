@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Advertisement;
+
 final class AdvertisementController extends AbstractController
 {
     public const string VIEW_LIST = 'advertisement/list';
@@ -12,11 +14,12 @@ final class AdvertisementController extends AbstractController
 
     public function list(): void
     {
-        $anuncios = [
-            'Joaquim',
-            'Filomena',
-            'Raimundinha',
-        ];
+        $entityManager = require_once dirname(path: __DIR__, levels: 2).'/doctrine.php';
+
+        $repository = $entityManager->getRepository(Advertisement::class);
+
+        //SELECT * FROM 
+        $anuncios = $repository->findAll();
 
         $this->render(self::VIEW_LIST, [
             'anuncios' => $anuncios,
