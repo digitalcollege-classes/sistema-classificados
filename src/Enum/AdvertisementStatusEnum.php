@@ -10,8 +10,6 @@ enum AdvertisementStatusEnum: string
     case INACTIVE = 'INACTIVE';
     case PAUSED = 'PAUSED';
     case SOLD = 'SOLD';
-
     case DRAFT = 'DRAFT';
     case EXPIRED = 'EXPIRED';
-
 }
