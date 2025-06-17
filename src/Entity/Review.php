@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+use InvalidArgumentException;
+
 class Review
 {
     private ?int $id;
@@ -11,79 +15,79 @@ class Review
     private int $advertisementId;
     private int $rating;
     private ?string $comment = null;
-    private ?\DateTime $createdAt;
-    private ?\DateTime $updatedAt;
+    private ?DateTime $createdAt;
+    private ?DateTime $updatedAt;
 
-    public function getId(): int 
-    { 
-        return $this->id; 
+    public function getId(): int
+    {
+        return $this->id;
     }
 
-    public function setId(int $id): void 
-    { 
-        $this->id = $id; 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
-    public function getUserId(): int 
-    { 
-        return $this->userId; 
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 
-    public function setUserId(int $userId): void 
-    { 
-        $this->userId = $userId; 
+    public function setUserId(int $userId): void
+    {
+        $this->userId = $userId;
     }
 
-    public function getAdvertisementId(): int 
-    { 
-        return $this->advertisementId; 
+    public function getAdvertisementId(): int
+    {
+        return $this->advertisementId;
     }
 
-    public function setAdvertisementId(int $advertisementId): void 
-    { 
-        $this->advertisementId = $advertisementId; 
+    public function setAdvertisementId(int $advertisementId): void
+    {
+        $this->advertisementId = $advertisementId;
     }
 
-    public function getRating(): int 
-    { 
-        return $this->rating; 
+    public function getRating(): int
+    {
+        return $this->rating;
     }
 
-    public function setRating(int $rating): void 
+    public function setRating(int $rating): void
     {
         if ($rating < 1 || $rating > 5) {
-            throw new \InvalidArgumentException('Rating deve ser entre 1 e 5');
+            throw new InvalidArgumentException('Rating deve ser entre 1 e 5');
         }
         $this->rating = $rating;
     }
 
-    public function getComment(): string 
-    { 
-        return $this->comment; 
+    public function getComment(): string
+    {
+        return $this->comment;
     }
 
-    public function setComment(string $comment): void 
-    { 
-        $this->comment = $comment; 
+    public function setComment(string $comment): void
+    {
+        $this->comment = $comment;
     }
 
-    public function getCreatedAt(): ?\DateTime 
-    { 
-        return $this->createdAt; 
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
     }
     
-    public function setCreatedAt(\DateTime $createdAt): void 
-    { 
-        $this->createdAt = $createdAt; 
+    public function setCreatedAt(DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime 
-    { 
-        return $this->updatedAt; 
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void 
-    { 
-        $this->updatedAt = $updatedAt; 
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
