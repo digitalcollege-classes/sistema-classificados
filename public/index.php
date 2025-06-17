@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Controller\ErrorController;
 use App\Controller\HomepageController;
 
@@ -17,11 +19,11 @@ $routes = [
 ];
 
 $routes = [
-    ... $routes,
-    ... routes('user'),
-    ... routes('auth'),
-    ... routes('advertisement'),
-    ... routes('category'),
+    ...$routes,
+    ...routes('user'),
+    ...routes('auth'),
+    ...routes('advertisement'),
+    ...routes('category'),
 ];
 
 // CRUD Advertisement
@@ -29,7 +31,7 @@ $routes = [
 
 if (false === isset($routes[$url])) {
     (new ErrorController())->pageNotFound();
-    exit; //matar a aplicação
+    exit; // matar a aplicação
 }
 
 [$controller, $method] = $routes[$url];
