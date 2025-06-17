@@ -4,35 +4,35 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 class ContactInformation
 {
-        #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
 
-        #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone;
 
-        #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $email;
 
-        #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $socialMedia;
 
     #[ORM\Column]
     private DateTime $createdAt;
 
+    #[ORM\Column]
     private DateTime $updatedAt;
 
     public function getId(): int
     {
         return $this->id;
     }
-
+    
     public function setId(int $id): void
     {
         $this->id = $id;
@@ -65,7 +65,7 @@ class ContactInformation
 
     public function setSocialMedia(string $socialMedia): void
     {
-        $this->name = $socialMedia;
+        $this->socialMedia = $socialMedia;
     }
 
     public function getCreatedAt(): DateTime
