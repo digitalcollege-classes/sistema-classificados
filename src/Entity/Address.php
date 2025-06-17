@@ -4,14 +4,34 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class Address
 {
+
+    #[ORM\Column] #[ORM\GeneratedValue]
+    private int $id;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $street = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $number = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $complement = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $neighborhood = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $city = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $state = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $zipCode = null;
 
     public function getStreet(): ?string
