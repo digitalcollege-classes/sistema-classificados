@@ -13,6 +13,5 @@ final class ErrorController extends AbstractController
         http_response_code(404);
 
         $this->render(self::VIEW_NOT_FOUND);
-        //parent::render('error/page-not-found');
     }
 }
