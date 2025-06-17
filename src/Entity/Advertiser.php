@@ -7,16 +7,14 @@ namespace App\Entity;
 use App\Enum\AdvertiserStatusEnum;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
 
 #[ORM\Entity]
 class Advertiser
 {
-
     #[ORM\Column(length: 100)]
-
     private int $id;
 
+    #[ORM\Column(type: 'string', length: 36, unique: true)]
     private string $name;
 
     #[ORM\Column(length: 100)]
@@ -31,12 +29,11 @@ class Advertiser
     #[ORM\Column(enumType: AdvertiserStatusEnum::class)]
     private AdvertiserStatusEnum $status;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: 'datetime')]
     private DateTime $createdAt;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: 'datetime')]
     private DateTime $updatedAt;
-
 
     public function __construct(
         string $name,
@@ -44,12 +41,11 @@ class Advertiser
         string $document,
         string $phone
     ) {
-        $this->id = Uuid::uuid4()->toString();
         $this->name = $name;
         $this->email = $email;
         $this->document = $document;
         $this->phone = $phone;
-        $this->status = AdvertisementStatusEnum::INACTIVE; // Valor padrão INACTIVE
+        $this->status = AdvertisementStatusEnum::INACTIVE;
         $this->createdAt = new DateTime();
         $this->updatedAt = new DateTime();
     }
@@ -110,7 +106,7 @@ class Advertiser
 
     public function isActive(): bool
     {
-        return $this->status === AdvertisementStatusEnum::ACTIVE;
+        return AdvertisementStatusEnum::ACTIVE === $this->status;
     }
 
     public function activate(): void
@@ -139,4 +135,4 @@ class Advertiser
     {
         $this->updatedAt = new DateTime();
     }
-} 
+}
