@@ -8,6 +8,7 @@ final class CategoryController extends AbstractController
 {
     public const string VIEW_LIST = 'category/list';
     public const string VIEW_ADD = 'category/add';
+
     public function list(): void
     {
         $categories = [

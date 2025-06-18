@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Entity;
 
-use DateTime;
-use DateTimeInterface;
 use App\Enum\AdvertiserPlanStatusEnum;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -117,13 +117,13 @@ class AdvertiserPlan
 
     public function isActive(): bool
     {
-        return $this->status === AdvertiserPlanStatusEnum::ACTIVE
-            && (!$this->endDate || $this->endDate > new \DateTime());
+        return AdvertiserPlanStatusEnum::ACTIVE === $this->status
+            && (!$this->endDate || $this->endDate > new DateTime());
     }
 
     public function isExpired(): bool
     {
-        return $this->status === AdvertiserPlanStatusEnum::EXPIRED
-            || ($this->endDate !== null && $this->endDate < new \DateTime());
+        return AdvertiserPlanStatusEnum::EXPIRED === $this->status
+            || (null !== $this->endDate && $this->endDate < new DateTime());
     }
 }

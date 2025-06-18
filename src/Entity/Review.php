@@ -89,7 +89,7 @@ class Review
     {
         return $this->createdAt;
     }
-    
+
     public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
