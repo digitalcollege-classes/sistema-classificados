@@ -4,18 +4,26 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 use DateTime;
 
+#[ORM\Entity]
 class ContactInformation
 {
+        #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
 
+        #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone;
 
+        #[ORM\Column(length: 50, nullable: true)]
     private ?string $email;
 
+        #[ORM\Column(length: 100, nullable: true)]
     private ?string $socialMedia;
 
+    #[ORM\Column]
     private DateTime $createdAt;
 
     private DateTime $updatedAt;

@@ -8,15 +8,29 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
 
+#[ORM\Entity]
 class Review
 {
-    private ?int $id;
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
+    private int $id;
+
+    #[ORM\Column]
     private int $userId;
+
+    #[ORM\Column]
     private int $advertisementId;
+
+    #[ORM\Column]
     private int $rating;
+
+    #[ORM\Column(nullable: true)]
     private ?string $comment = null;
-    private ?DateTime $createdAt;
-    private ?DateTime $updatedAt;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $createdAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $updatedAt = null;
 
     public function getId(): int
     {

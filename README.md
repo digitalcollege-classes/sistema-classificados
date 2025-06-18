@@ -82,6 +82,34 @@ git rebase origin/main
 
 ### Comandos uteis
 
+##### Entrar no container
+Para entrar no container:
+```shell
+docker compose exec -it php bash
+```
+
+
+<details>
+    <summary>Entrar no MySQL</summary>
+    
+Primeiro, entre no container do mysql    
+```shell
+docker compose exec -it mysql bash
+```
+
+Agora, logue no mysql
+```shell
+mysql -u root -proot
+```
+
+
+Entre no banco de dados
+```shell
+USE db_name;
+```
+</details>
+
+##### Modificar o esquema do banco de dados:
 > Antes de mais nada, **entre no container** do PHP
 
 Para modificar o esquema do banco de dados:

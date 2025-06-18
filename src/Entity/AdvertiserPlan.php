@@ -3,19 +3,37 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeInterface;
 use App\Enum\AdvertiserPlanStatusEnum;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class AdvertiserPlan
 {
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
+
+    #[ORM\Column]
     private int $advertiserId;
+
+    #[ORM\Column]
     private int $planId;
-    private DateTimeInterface $startDate;
-    private ?DateTimeInterface $endDate = null;
+
+    #[ORM\Column]
+    private DateTime $startDate;
+
+    #[ORM\Column]
+    private ?DateTime $endDate = null;
+
+    #[ORM\Column(length: 15)]
     private AdvertiserPlanStatusEnum $status;
-    private DateTimeInterface $createdAt;
-    private DateTimeInterface $updatedAt;
+
+    #[ORM\Column]
+    private DateTime $createdAt;
+
+    #[ORM\Column]
+    private DateTime $updatedAt;
 
     public function getId(): int
     {
@@ -47,22 +65,22 @@ class AdvertiserPlan
         $this->planId = $planId;
     }
 
-    public function getStartDate(): DateTimeInterface
+    public function getStartDate(): DateTime
     {
         return $this->startDate;
     }
 
-    public function setStartDate(DateTimeInterface $startDate): void
+    public function setStartDate(DateTime $startDate): void
     {
         $this->startDate = $startDate;
     }
 
-    public function getEndDate(): ?DateTimeInterface
+    public function getEndDate(): ?DateTime
     {
         return $this->endDate;
     }
 
-    public function setEndDate(?DateTimeInterface $endDate): void
+    public function setEndDate(?DateTime $endDate): void
     {
         $this->endDate = $endDate;
     }
@@ -77,22 +95,22 @@ class AdvertiserPlan
         $this->status = $status;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeInterface $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): DateTimeInterface
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
