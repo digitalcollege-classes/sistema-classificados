@@ -27,10 +27,10 @@ class Review
     private ?string $comment = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTime $createdAt = null;
+    private ?DateTime $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTime $updatedAt = null;
+    private ?DateTime $updatedAt = null;
 
     public function getId(): int
     {
