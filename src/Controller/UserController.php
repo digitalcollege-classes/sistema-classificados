@@ -14,7 +14,7 @@ final class UserController extends AbstractController
     {
         $usuarios = [
             [
-                'id' => '01' ,
+                'id' => '01',
                 'status' => 'ativo',
                 'name' => 'Fulano',
                 'type' => '1',
@@ -25,7 +25,7 @@ final class UserController extends AbstractController
                 'table-actions' => '',
             ],
             [
-                'id' => '02' ,
+                'id' => '02',
                 'status' => 'ativo',
                 'name' => 'Beltrano',
                 'type' => '1',
@@ -36,7 +36,7 @@ final class UserController extends AbstractController
                 'table-actions' => '',
             ],
             [
-                'id' => '03' ,
+                'id' => '03',
                 'status' => 'ativo',
                 'name' => 'Cicrano',
                 'type' => '1',
@@ -46,7 +46,6 @@ final class UserController extends AbstractController
                 'data-edit' => '2025-05-27',
                 'table-actions' => '',
             ],
-            
         ];
 
         $this->render(self::VIEW_LIST, [

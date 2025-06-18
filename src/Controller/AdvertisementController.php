@@ -12,13 +12,14 @@ final class AdvertisementController extends AbstractController
     public const string VIEW_ADD = 'advertisement/add';
     public const string VIEW_EDIT = 'advertisement/edit';
     public const string VIEW_VIEW = 'advertisement/view';
+
     public function list(): void
     {
         $entityManager = require_once dirname(path: __DIR__, levels: 2).'/doctrine.php';
 
         $repository = $entityManager->getRepository(Advertisement::class);
 
-        // SELECT * FROM 
+        // SELECT * FROM
         $anuncios = $repository->findAll();
 
         $this->render(self::VIEW_LIST, [

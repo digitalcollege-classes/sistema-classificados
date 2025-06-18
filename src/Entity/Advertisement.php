@@ -1,12 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-use DateTime;
 use App\Enum\AdvertisementStatusEnum;
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 class Advertisement
@@ -36,7 +36,8 @@ class Advertisement
     private DateTime $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private DateTime $updatedAt;    
+    private DateTime $updatedAt;
+
     public function __construct(
         int $advertiserId,
         int $categoryId,
@@ -187,7 +188,7 @@ class Advertisement
 
     public function isActive(): bool
     {
-        return $this->status === AdvertisementStatusEnum::ACTIVE;
+        return AdvertisementStatusEnum::ACTIVE === $this->status;
     }
 
     private function touch(): void
