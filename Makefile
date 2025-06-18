@@ -36,8 +36,8 @@ reset:
 
 # Limpa a cache e o banco
 reset_banco:
-	docker compose exec -T php bash -c "php bin/doctrine orm:schema-tool:drop"
-	docker compose exec -T php bash -c "php bin/doctrine orm:schema-tool:create"
+	docker compose exec -T php bash -c "php bin/doctrine orm:schema-tool:drop --force"
+	docker compose exec -T php bash -c "php bin/doctrine orm:schema-tool:update --force"
 
 style:
 	docker compose exec -T -e PHP_CS_FIXER_IGNORE_ENV=1 php bash -c "php vendor/bin/php-cs-fixer fix --dry-run --diff -vvv"

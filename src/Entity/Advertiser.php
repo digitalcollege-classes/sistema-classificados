@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class Advertiser
 {
-    #[ORM\Column(length: 100)]
+    #[ORM\Id] #[ORM\GeneratedValue] #[ORM\Column]
     private int $id;
 
     #[ORM\Column(type: 'string', length: 36, unique: true)]

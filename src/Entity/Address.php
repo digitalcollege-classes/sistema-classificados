@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class Address
 {
-    #[ORM\Column] #[ORM\GeneratedValue]
+    #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
 
     #[ORM\Column(length: 100, nullable: true)]
