@@ -1,6 +1,4 @@
 <?php
-// include '../src/conexao.php';
-
 $dadosUser = [
     [
         'nome' => 'Sujiro Kimimami',
@@ -15,82 +13,143 @@ $dadosUser = [
 
 <section class="my-5">
     <div class="container">
-        <div class="card shadow-lg rounded-4 border-0 mx-auto" style="max-width: 950px;">
-            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top-4">
-                <h3 class="mb-0 fw-bold">Perfil do Usuário</h3>
-                <a href="#" class="btn btn-danger btn-sm rounded-pill px-4">Logout</a>
+        <div class="card border-0 shadow-lg rounded-4 mx-auto" style="max-width: 900px;">
+            <div class="rounded-top-4 px-4 pt-4 pb-3 border-bottom d-flex align-items-center gap-2">
+                <span class="material-icons text-primary" style="font-size:2.2rem;">edit</span>
+                <span class="fw-bold text-primary" style="font-size:2rem;">Editar Perfil</span>
             </div>
-
-            <div class="card-body p-5">
-                <div class="text-center mb-5">
-                    <img
-                        src="/assets/images/sujiro.jpeg"
-                        alt="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
-                        class="rounded-circle shadow border border-4 border-primary img-fluid"
-                        style="width: 140px; height: 140px; object-fit: cover;"
-                    >
-                    <h2 class="mt-3 fw-bold text-primary"><?= htmlspecialchars($dadosUser[0]['nome']); ?></h2>
-                </div>
-
-                <div class="row g-5">
-                    <div class="col-md-6">
-                        <form method="POST" class="needs-validation" novalidate>
-                            <div class="mb-4">
-                                <label for="nome" class="form-label text-secondary fw-semibold">Nome</label>
-                                <input
-                                    id="nome"
-                                    name="nome"
-                                    type="text"
-                                    class="form-control form-control-lg rounded-pill shadow-sm"
-                                    value="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
-                                    required
-                                >
-                                <div class="invalid-feedback ps-3">Por favor, insira seu nome.</div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="email" class="form-label text-secondary fw-semibold">Email</label>
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    class="form-control form-control-lg rounded-pill shadow-sm"
-                                    value="<?= htmlspecialchars($dadosUser[0]['email']); ?>"
-                                    required
-                                >
-                                <div class="invalid-feedback ps-3">Por favor, insira um email válido.</div>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="senha" class="form-label text-secondary fw-semibold">Senha</label>
-                                <input
-                                    id="senha"
-                                    name="senha"
-                                    type="password"
-                                    class="form-control form-control-lg rounded-pill shadow-sm"
-                                    placeholder="••••••••"
-                                >
-                                <small class="text-muted ps-2">Deixe em branco para manter a senha atual.</small>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm">Salvar</button>
-                        </form>
+            <div class="card-body p-4 p-md-5">
+                <div class="row g-0">
+                    <!-- Avatar e dados -->
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center justify-content-center py-4 px-3 avatar-col">
+                        <img
+                            src="/assets/images/sujiro.jpeg"
+                            alt="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
+                            class="rounded-circle shadow border mb-3 avatar-img"
+                            style="width: 200px; height: 200px; object-fit: cover; border-width: 3px; border-style: solid; border-color: var(--primary);"
+                        >
+                        <h4 class="fw-bold text-primary mb-1 text-center"><?= htmlspecialchars($dadosUser[0]['nome']); ?></h4>
+                        <span class="text-secondary small d-block mb-2 text-center">
+                            <span class="material-icons me-1" style="font-size:1.1em;">mail</span><?= htmlspecialchars($dadosUser[0]['email']); ?>
+                        </span>
+                        <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill px-3 d-flex align-items-center gap-2 mt-2">
+                            <span class="material-icons">logout</span> Sair
+                        </a>
                     </div>
-
-                    <div class="col-md-6 d-flex align-items-center">
-                        <div class="bg-light rounded-4 p-4 shadow-sm w-100">
-                            <h5 class="text-primary fw-semibold mb-4 text-center">Informações da Conta</h5>
-                            <ul class="list-unstyled fs-6 text-secondary mb-0">
-                                <li class="d-flex justify-content-between mb-3">
-                                    <strong>Data de criação:</strong>
+                    <!-- Formulário e dados da conta -->
+                    <div class="col-12 col-md-8 p-4">
+                        <form method="POST" class="needs-validation" novalidate id="formPerfil" autocomplete="off">
+                            <div class="row g-3 flex">
+                                <div class="col-12">
+                                    <label for="nome" class="form-label text-primary fw-semibold d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-icons">person</span> Nome
+                                    </label>
+                                    <input
+                                        id="nome"
+                                        name="nome"
+                                        type="text"
+                                        class="form-control form-control-lg rounded-3"
+                                        value="<?= htmlspecialchars($dadosUser[0]['nome']); ?>"
+                                        required
+                                        style="background: var(--gray-light); border: 1px solid var(--gray-light); color: var(--text);"
+                                    >
+                                    <div class="invalid-feedback ps-2">Por favor, insira seu nome.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="email" class="form-label text-primary fw-semibold d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-icons">mail</span> Email
+                                    </label>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        class="form-control form-control-lg rounded-3"
+                                        value="<?= htmlspecialchars($dadosUser[0]['email']); ?>"
+                                        required
+                                        style="background: var(--gray-light); border: 1px solid var(--gray-light); color: var(--text);"
+                                    >
+                                    <div class="invalid-feedback ps-2">Por favor, insira um email válido.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="senha_atual" class="form-label text-primary fw-semibold d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-icons">lock</span> Senha Atual
+                                    </label>
+                                    <input
+                                        id="senha_atual"
+                                        name="senha_atual"
+                                        type="password"
+                                        class="form-control form-control-lg rounded-3"
+                                        placeholder="••••••••"
+                                        minlength="6"
+                                        autocomplete="current-password"
+                                        style="background: var(--gray-light); border: 1px solid var(--gray-light); color: var(--text);"
+                                    >
+                                    <div class="invalid-feedback ps-2" id="senhaAtualFeedback" style="display:none"></div>
+                                    <small class="text-muted ps-2" id="senhaAtualHint">Obrigatório para alterar a senha.</small>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="senha" class="form-label text-primary fw-semibold d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-icons">lock</span> Nova Senha
+                                    </label>
+                                    <input
+                                        id="senha"
+                                        name="senha"
+                                        type="password"
+                                        class="form-control form-control-lg rounded-3"
+                                        placeholder="••••••••"
+                                        minlength="6"
+                                        autocomplete="new-password"
+                                        style="background: var(--gray-light); border: 1px solid var(--gray-light); color: var(--text);"
+                                    >
+                                    <div class="invalid-feedback ps-2">A senha deve ter pelo menos 6 caracteres.</div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="confirma_senha" class="form-label text-primary fw-semibold d-flex align-items-center gap-1 mb-1">
+                                        <span class="material-icons">lock</span> Confirmar Nova Senha
+                                    </label>
+                                    <input
+                                        id="confirma_senha"
+                                        name="confirma_senha"
+                                        type="password"
+                                        class="form-control form-control-lg rounded-3"
+                                        placeholder="••••••••"
+                                        minlength="6"
+                                        autocomplete="new-password"
+                                        style="background: var(--gray-light); border: 1px solid var(--gray-light); color: var(--text);"
+                                    >
+                                    <div class="invalid-feedback ps-2" id="confirmaSenhaFeedback">As senhas não coincidem.</div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <button type="submit" id="btnSalvar" class="btn btn-primary btn-lg w-100 rounded-pill d-flex align-items-center justify-content-center gap-2" disabled>
+                                        <span class="material-icons">save</span> Salvar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="mt-4 bg-white rounded-4 p-3 shadow-sm border dados-conta-box">
+                            <h6 class="text-primary fw-semibold mb-3 d-flex align-items-center gap-2">
+                                <span class="material-icons">info</span> Dados da Conta
+                            </h6>
+                            <ul class="list-unstyled text-secondary mb-0 dados-conta-list">
+                                <li class="mb-2 d-flex flex-column flex-md-row align-items-start align-items-md-center gap-1 gap-md-2">
+                                    <span class="d-flex align-items-center gap-2">
+                                        <span class="material-icons">calendar_today</span>
+                                        <span class="fw-semibold">Criado em:</span>
+                                    </span>
                                     <span><?= htmlspecialchars($dadosUser[0]['dataCriacao']); ?></span>
                                 </li>
-                                <li class="d-flex justify-content-between mb-3">
-                                    <strong>Data de modificação:</strong>
+                                <li class="mb-2 d-flex flex-column flex-md-row align-items-start align-items-md-center gap-1 gap-md-2">
+                                    <span class="d-flex align-items-center gap-2">
+                                        <span class="material-icons">edit</span>
+                                        <span class="fw-semibold">Modificado em:</span>
+                                    </span>
                                     <span><?= htmlspecialchars($dadosUser[0]['dataModificacao']); ?></span>
                                 </li>
-                                <li class="d-flex justify-content-between">
-                                    <strong>Último login:</strong>
+                                <li class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-1 gap-md-2">
+                                    <span class="d-flex align-items-center gap-2">
+                                        <span class="material-icons">login</span>
+                                        <span class="fw-semibold">Último login:</span>
+                                    </span>
                                     <span><?= htmlspecialchars($dadosUser[0]['ultimoLogin']); ?></span>
                                 </li>
                             </ul>
