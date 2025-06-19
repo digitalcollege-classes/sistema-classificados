@@ -1,3 +1,58 @@
-<h1>Pagina Inicial</h1>
-
-Bem vindo <?php echo $user; ?>
+<section class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 650px;">
+        <div class="card-body text-center">
+            <h1 class="mb-3 fw-bold text-primary d-flex align-items-center justify-content-center gap-2">
+                <span class="material-icons">dashboard</span> Painel do Usuário
+            </h1>
+            <p class="lead mb-4">
+                Olá, <strong><?= htmlspecialchars($user); ?></strong>! Aqui você pode gerenciar seus anúncios, visualizar categorias, acompanhar estatísticas e acessar recursos exclusivos da sua conta.
+            </p>
+            <div class="row g-3 justify-content-center">
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-3 shadow-sm">
+                        <span class="material-icons text-primary fs-3">list_alt</span>
+                        <div class="text-start">
+                            <div class="fw-semibold">Meus Anúncios</div>
+                            <small>Gerencie, edite ou exclua seus anúncios facilmente.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-3 shadow-sm">
+                        <span class="material-icons text-success fs-3">sell</span>
+                        <div class="text-start">
+                            <div class="fw-semibold">Categorias</div>
+                            <small>Veja e explore todas as categorias disponíveis.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-3 shadow-sm">
+                        <span class="material-icons text-warning fs-3">bar_chart</span>
+                        <div class="text-start">
+                            <div class="fw-semibold">Estatísticas</div>
+                            <small>Acompanhe o desempenho dos seus anúncios.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-3 shadow-sm">
+                        <span class="material-icons text-secondary fs-3">account_circle</span>
+                        <div class="text-start">
+                            <div class="fw-semibold">Minha Conta</div>
+                            <small>Atualize seus dados e preferências de perfil.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="/anuncios" class="btn btn-primary me-2 d-inline-flex align-items-center gap-2">
+                    <span class="material-icons">list_alt</span> Ver Anúncios
+                </a>
+                <a href="/categorias" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+                    <span class="material-icons">sell</span> Ver Categorias
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
