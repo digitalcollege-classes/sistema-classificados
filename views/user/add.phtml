@@ -1,32 +1,115 @@
-<section class="card card-body mt-5">
-  <h2>Cadastro de anunciante</h2>
-
-  <hr>
-
-  <div class="row">
-    <div class="col">
-      <img src="/assets/images/womanjob.svg" width="58%" alt="">
+<section class="login-bg d-flex align-items-center justify-content-center min-vh-100 w-100">
+  <div class="login-card card border-0 shadow-lg p-4 mx-auto">
+    <div class="text-center mb-3">
+      <span class="material-icons icon-login" style="font-size: 2.5rem; color: #0D6EFD;">groups</span>
     </div>
-    <div class="col">
-      <div class="mb-3">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" aria-describedby="nome" placeholder="Digite aqui o seu nome">
-        <small id="text" class="form-text text-muted">O sistema segue as diretrizes da LGPT</small>
+    <h2 class="text-center fw-bold mb-2 text-primary">Cadastro de Anunciante</h2>
+    <p class="text-center text-secondary mb-4 subtitle-login">
+      Crie sua conta para anunciar no sistema
+    </p>
+    <form id="cadastroForm" novalidate autocomplete="off">
+      <div class="form-floating-icon mb-4">
+        <input type="text" id="nome" name="nome" class="form-control form-control-lg" placeholder=" " required minlength="3" autocomplete="name">
+        <label for="nome">
+          <span class="material-icons me-2" style="vertical-align: middle;">person</span>Nome completo
+        </label>
+        <div class="invalid-feedback">
+          Por favor, insira seu nome completo (mínimo 3 letras).
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1">Endereço de email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insira o seu email aqui">
-        <small id="emailHelp" class="form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
+      <div class="form-floating-icon mb-4">
+        <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder=" " required autocomplete="username">
+        <label for="email">
+          <span class="material-icons me-2" style="vertical-align: middle;">mail</span>E-mail
+        </label>
+        <div class="invalid-feedback">
+          Por favor, insira um e-mail válido.
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1">Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+      <div class="form-floating-icon mb-4">
+        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder=" " required minlength="4" autocomplete="new-password">
+        <label for="password">
+          <span class="material-icons me-2" style="vertical-align: middle;">lock</span>Senha
+        </label>
+        <button class="btn btn-eye" type="button" id="togglePassword" tabindex="-1">
+          <span class="material-icons" id="eyeIcon">visibility</span>
+        </button>
+        <div class="invalid-feedback">
+          Por favor, insira uma senha válida (mínimo 4 caracteres).
+        </div>
       </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Aceito os termos</label>
+      <div class="form-check mb-4 text-start">
+        <input class="form-check-input" type="checkbox" value="" id="termos" required>
+        <label class="form-check-label small ms-1" for="termos">
+          Aceito os <a href="#" class="text-primary text-decoration-underline">termos de uso</a>
+        </label>
+        <div class="invalid-feedback">
+          Você deve aceitar os termos para continuar.
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary w-100 mt-3">Enviar</button>
-    </div>
+      <button type="submit" class="btn btn-primary w-100 btn-lg rounded-3 mt-2 shadow-sm">Cadastrar</button>
+      <div class="mt-4 text-center small">
+        Já tem conta?
+        <a href="/login" class="text-decoration-none">Entrar</a>
+      </div>
+    </form>
   </div>
 </section>
+
+<script>
+  (function () {
+    'use strict';
+    const form = document.getElementById('cadastroForm');
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const termos = document.getElementById('termos');
+
+    [nome, email, password, termos].forEach(function(input) {
+      input.addEventListener('input', function() {
+        input.classList.remove('is-invalid');
+      });
+    });
+
+    form.addEventListener('submit', function (event) {
+      var valid = true;
+
+      if (!nome.value || nome.value.length < 3) {
+        nome.classList.add('is-invalid');
+        valid = false;
+      }
+      if (!email.value || !email.checkValidity()) {
+        email.classList.add('is-invalid');
+        valid = false;
+      }
+      if (!password.value || password.value.length < 4) {
+        password.classList.add('is-invalid');
+        valid = false;
+      }
+      if (!termos.checked) {
+        termos.classList.add('is-invalid');
+        valid = false;
+      }
+
+      if (!valid) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add('was-validated');
+    }, false);
+  })();
+
+  // Exibir/ocultar senha com Material Icons
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    var passwordInput = document.getElementById('password');
+    var eyeIcon = document.getElementById('eyeIcon');
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.textContent = 'visibility_off';
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.textContent = 'visibility';
+    }
+  });
+</script>
