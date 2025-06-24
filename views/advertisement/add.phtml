@@ -1,44 +1,55 @@
-<section class="card card-body mt-5">
-  <h2>Novo Anuncio</h2>
-
-  <hr>
-
-  <div class="row">
-    <div class="col">
-      <img src="/assets/images/add-advertisement.svg" width="80%" alt="">
-    </div>
-    <div class="col">
-      <form>
-        <div class="mb-3">
-          <label for="titulo" class="form-label">Titulo</label>
-          <input placeholder="Digite aqui" type="titulo" class="form-control" id="titulo" aria-describedby="titulo">
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+          <h2 class="mb-4 text-primary d-flex align-items-center gap-2">
+            <span class="material-icons">campaign</span> Novo Anúncio
+          </h2>
+          <form>
+            <div class="row">
+              <div class="col-md-5 d-flex align-items-center justify-content-center">
+                <img src="/assets/images/add-advertisement.svg" width="80%" alt="Adicionar anúncio">
+              </div>
+              <div class="col-md-7">
+                <div class="mb-3">
+                  <label for="titulo" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">description</span> Título
+                  </label>
+                  <input type="text" class="form-control" id="titulo" placeholder="Digite aqui" required>
+                </div>
+                <div class="mb-3">
+                  <label for="descricao" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">notes</span> Descrição
+                  </label>
+                  <textarea class="form-control" id="descricao" placeholder="Escreva sua descrição" required></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">flag</span> Status do Anúncio
+                  </label>
+                  <select id="status" name="status" class="form-select" required>
+                    <option selected disabled>Selecione</option>
+                    <option>Publicado</option>
+                    <option>Rascunho</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="categoria" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">category</span> Categoria
+                  </label>
+                  <select id="categoria" name="categoria" class="form-select" required>
+                    <option selected disabled>Selecione</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                  <span class="material-icons">save</span> Salvar
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-
-        <div class="mb-3">
-          <label for="descricao">Descrição</label>
-          <textarea class="form-control" placeholder="Escreva sua descrição" id="descricao"></textarea>
-        </div>
-
-          <div class="mb-3">
-            <label for="inputState">Status do Anuncio</label>
-              <select id="inputState" name="status" class="form-select" aria-label="Default select example">
-                  <option selected disabled>Selecione</option>
-                  <option>Publicado</option>
-                  <option>Rascunho</option>
-              </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="inputState">Escolha sua categoria</label>
-              <select id="inputState" name="status" class="form-select" aria-label="Default select example">
-                  <option selected disabled>Selecione</option>
-              </select>
-          </div>
-          
-          <button type="submit" class="btn btn-primary w-100">PRONTO</button>
-      </form>
+      </div>
     </div>
   </div>
 </section>
-
-
