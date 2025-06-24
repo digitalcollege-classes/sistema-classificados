@@ -1,5 +1,6 @@
 <?php
-$perPage = 10;
+// Paginação e preparação dos dados
+$perPage = 12;
 $total = count($categories);
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 $start = ($page - 1) * $perPage;
@@ -7,76 +8,187 @@ $categoriesPage = array_slice($categories, $start, $perPage);
 $totalPages = ceil($total / $perPage);
 ?>
 
-<section class="container my-4">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="mb-4" style="margin: 0;">Categorias de Anúncios</h1>
-        <a href="/categorias/adicionar" class="btn btn-primary" style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-            </svg>
-            Adicionar Categoria
-        </a>
-    </div>
-
-    <?php if (empty($categories)): ?>
-        <div class="alert alert-info">Nenhuma categoria cadastrada.</div>
-    <?php else: ?>
-        <div class="row g-4 my-2">
-            <?php foreach ($categoriesPage as $category): ?>
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2">
-                    <div class="card h-100 shadow-sm">
-                        <?php if (!empty($category['photo'])): ?>
-                            <img src="<?= htmlspecialchars($category['photo']) ?>" class="card-img-top img-fluid" alt="Foto da categoria"
-                                style="height: 160px; object-fit: cover; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
-                        <?php else: ?>
-                            <div class="card-img-top d-flex align-items-center justify-content-center bg-light"
-                                style="height: 160px; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
-                                    <span class="text-muted">Sem foto</span>
-                            </div>
-                        <?php endif; ?>
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($category['name']) ?></h5>
-                            <p class="card-text mb-4" style="
-                                display: -webkit-box;
-                                -webkit-line-clamp: 4;
-                                -webkit-box-orient: vertical;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                min-height: 4.5em;
-                                max-height: 6em;
-                            ">
-                                <?= htmlspecialchars($category['description']) ?>
-                            </p>
-                        </div>
-                        <div class="card-footer bg-transparent border-0 d-flex justify-content-end gap-2">
-                            <a href="/categoria/editar/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-primary d-flex align-items-center gap-1">
-                                <i class="bi bi-pencil"></i> Editar
-                            </a>
-                            <a href="/categoria/excluir/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-danger d-flex align-items-center gap-1"
-                                onclick="return confirm('Tem certeza que deseja excluir?')">
-                                    <i class="bi bi-trash"></i> Excluir
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+<section class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 main-card-categorias">
+        <!-- Cabeçalho da página e botão de adicionar categoria -->
+        <div class="row align-items-center mb-4 g-2">
+            <div class="col-12 col-md-7 d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <span class="material-icons text-primary fs-1" style="font-size:2.2rem;">sell</span>
+                <h1 class="mb-0 fw-bold text-primary" style="font-size:2rem;">Categorias de Anúncios</h1>
+            </div>
+            <div class="col-12 col-md-5 d-flex justify-content-center justify-content-md-end">
+                <a href="/categorias/adicionar" class="btn btn-primary d-flex align-items-center gap-2 w-80 w-md-auto" style="max-width:260px;">
+                    <span class="material-icons">add</span> Adicionar Categoria
+                </a>
+            </div>
         </div>
 
-        <!-- Paginação Bootstrap -->
-        <nav class="mt-4">
-            <ul class="pagination justify-content-center">
-                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
-                    <a class="page-link" href="?page=<?= $page - 1 ?>">Anterior</a>
-                </li>
-                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+        <!-- Mensagem caso não haja categorias -->
+        <?php if (empty($categories)): ?>
+            <div class="alert alert-info d-flex align-items-center gap-2">
+                <span class="material-icons">info</span>
+                Nenhuma categoria cadastrada.
+            </div>
+        <?php else: ?>
+            <div class="row g-4">
+                <?php foreach ($categoriesPage as $category): ?>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="card categoria-card h-100 shadow-sm border-0 rounded-4">
+                            <!-- Imagem da categoria -->
+                            <?php if (!empty($category['photo'])): ?>
+                                <img src="<?= htmlspecialchars($category['photo']) ?>" class="card-img-top categoria-img" alt="Foto da categoria">
+                            <?php else: ?>
+                                <div class="card-img-top d-flex flex-column align-items-center justify-content-center bg-light categoria-img categoria-img-placeholder">
+                                    <span class="material-icons text-secondary fs-1 mb-2" style="font-size:2.2rem;">photo_camera</span>
+                                    <span class="text-secondary small">Sem foto</span>
+                                </div>
+                            <?php endif; ?>
+                            <div class="card-body d-flex flex-column px-3 py-2">
+                                <h5 class="card-title text-primary d-flex align-items-center gap-2 mb-2 fs-6">
+                                    <span class="material-icons" style="font-size:1.2rem;">label</span>
+                                    <?= htmlspecialchars($category['name']) ?>
+                                </h5>
+                                <p class="card-text text-secondary mb-4 flex-grow-1 categoria-desc">
+                                    <?= htmlspecialchars($category['description']) ?>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="/categoria/editar/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-primary d-flex align-items-center gap-1 categoria-btn">
+                                    <span class="material-icons" style="font-size:1.1rem;">edit</span> <span>Editar</span>
+                                </a>
+                                <a href="/categoria/excluir/<?= urlencode($category['id']) ?>" class="btn btn-sm btn-danger d-flex align-items-center gap-1 categoria-btn"
+                                    onclick="return confirm('Tem certeza que deseja excluir?')">
+                                    <span class="material-icons" style="font-size:1.1rem;">delete</span> <span>Excluir</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Paginação Bootstrap com Material Icons -->
+            <?php if ($totalPages > 1): ?>
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                        <a class="page-link d-flex align-items-center gap-1" href="?page=<?= $page - 1 ?>">
+                            <span><span class="material-icons" style="font-size:1.1rem;">chevron_left</span> Anterior</span>
+                        </a>
                     </li>
-                <?php endfor; ?>
-                <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
-                    <a class="page-link" href="?page=<?= $page + 1 ?>">Próxima</a>
-                </li>
-            </ul>
-        </nav>
-    <?php endif; ?>
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                        <a class="page-link d-flex align-items-center gap-1" href="?page=<?= $page + 1 ?>">
+                            <span>Próxima <span class="material-icons" style="font-size:1.1rem;">chevron_right</span></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
 </section>
+
+<style>
+.categoria-card {
+    background: #FFFFFF;
+    border-radius: 1.2rem;
+    min-height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 2px 12px 0 rgba(34,87,122,0.09);
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #F0F2F5;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.categoria-card:hover {
+    box-shadow: 0 6px 24px 0 rgba(34,87,122,0.16);
+    border: 1.5px solid #D0E2FF;
+}
+.categoria-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 0.9rem;
+    margin-bottom: 1rem;
+    background: #F6F8FA;
+}
+.card-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.7rem !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: auto;
+    width: 100%;
+}
+.categoria-btn {
+    font-size: 1rem !important;
+    padding: 0.55rem 1.2rem !important;
+    border-radius: 0.7rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font-weight: 500;
+    width: 48%;
+    min-width: 100px;
+    max-width: 180px;
+}
+.pagination .page-link {
+    color: #22577A;
+    background: #F8FAFC;
+    border: 1.5px solid #E2E8F0;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.pagination .page-link:hover,
+.pagination .page-item.active .page-link {
+    background: #22577A;
+    color: #FFFFFF !important;
+    border-color: #22577A;
+}
+.pagination .page-item.disabled .page-link {
+    color: #A0AEC0;
+    background: #F1F5F9;
+    border-color: #E2E8F0;
+    pointer-events: none;
+}
+
+@media (max-width: 991.98px) {
+    .categoria-card { min-height: 260px; }
+    .categoria-img { height: 110px; }
+    .categoria-btn { font-size: 0.97rem !important; padding: 0.5rem 0.7rem !important; }
+}
+@media (max-width: 767.98px) {
+    .categoria-card { min-height: 200px; padding: 1rem 0.5rem 1rem 0.5rem; }
+    .categoria-img { 
+        height: 90px; 
+        object-position: top; /* Mostra o topo da imagem */
+    }
+    .card-footer { gap: 0.5rem !important; }
+    .categoria-btn { width: 100%; max-width: 100%; }
+    .card-footer { flex-direction: column !important; }
+}
+@media (max-width: 575.98px) {
+    .categoria-card {
+        min-height: 160px;
+        padding: 0.7rem 0.4rem 0.7rem 0.4rem;
+        margin-bottom: 1.2rem;
+    }
+    .categoria-img {
+        height: 28vw;
+        min-height: 80px;
+        max-height: 120px;
+        object-position: top;
+    }
+    .card-title { font-size: 0.97rem !important; }
+}
+</style>
