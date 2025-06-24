@@ -1,1 +1,55 @@
-Editar Anuncio
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+          <h2 class="mb-4 text-primary d-flex align-items-center gap-2">
+            <span class="material-icons">edit</span> Editar Anúncio
+          </h2>
+          <form>
+            <div class="row">
+              <div class="col-md-5 d-flex align-items-center justify-content-center">
+                <img src="/assets/images/add-advertisement.svg" width="80%" alt="Editar anúncio">
+              </div>
+              <div class="col-md-7">
+                <div class="mb-3">
+                  <label for="titulo" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">title</span> Título
+                  </label>
+                  <input type="text" class="form-control" id="titulo" value="Título do anúncio" required>
+                </div>
+                <div class="mb-3">
+                  <label for="descricao" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">notes</span> Descrição
+                  </label>
+                  <textarea class="form-control" id="descricao" required>TEXTO DA DESCRIÇÃO</textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">flag</span> Status do Anúncio
+                  </label>
+                  <select id="status" name="status" class="form-select" required>
+                    <option>Publicado</option>
+                    <option selected>Rascunho</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="categoria" class="form-label fw-semibold d-flex align-items-center gap-1">
+                    <span class="material-icons">category</span> Categoria
+                  </label>
+                  <select id="categoria" name="categoria" class="form-select" required>
+                    <option selected disabled>Selecione</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                  <span class="material-icons">save</span> Salvar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
