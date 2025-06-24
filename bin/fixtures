@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+use App\Entity\Category;
+
+$entityManager = require dirname(__DIR__) . '/doctrine.php';
+
+$categories = include 'DataFixtures/categories.php';
+
+foreach ($categories as $data) {
+    $category = new Category();
+    $category->setName($data['name']);
+    $category->setDescription($data['description']);
+    $category->setUpdatedAt(new DateTime($data['updatedAt']));
+    $category->setCreatedAt(new DateTime($data['createdAt']));
+
+    $entityManager->persist($category); //INSERT INTO...
+    echo "Inserindo Nova Categoria para testes..." . PHP_EOL;
+}
+
+$entityManager->flush();
