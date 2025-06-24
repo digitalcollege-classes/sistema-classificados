@@ -10,6 +10,31 @@ Essa estrutura já está dockerizada, então basta ter o docker compose rodando 
 - MySQL
 - nginx
 
+## Arquitetura da Aplicação
+
+```mermaid
+flowchart TD
+    app[[app]]
+    B((Browser))
+    DB[(Database)]
+    c[Controller]
+    r[Repository]
+    ca[ApiController]
+
+    app --Request/endpoint--> ca
+    B --URL/Route--> c
+    c --VIEW--> B
+    ca --JSON--> app
+
+
+    subgraph one[Server]
+        ca <--function()--> Service <--> r
+        c <--function()--> Service
+        DB --SELECT--> r
+        r --INSERT/UPDATE/DELETE--> DB
+    end
+```
+
 ## Como usar
 
 Primeiro basta clonar o repositório
