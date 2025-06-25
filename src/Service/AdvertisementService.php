@@ -6,7 +6,7 @@ namespace App\Service;
 
 use App\Entity\Advertisement;
 
-class AdvertisementService
+class AdvertisementService extends AbstractService
 {
     public function findAll(): array
     {

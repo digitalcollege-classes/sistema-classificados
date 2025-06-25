@@ -4,13 +4,23 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Connection\DatabaseConnection;
 use App\Entity\Category;
+use Doctrine\ORM\EntityRepository;
 
-class CategoryService
+class CategoryService extends AbstractService
 {
+    private readonly EntityRepository $repository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->repository = $this->entityManager->getRepository(Category::class);
+    }
+
     public function findAll(): array
     {
-        return [];
+        return $this->repository->findAll();
     }
 
     public function findBy(array $criteria): array

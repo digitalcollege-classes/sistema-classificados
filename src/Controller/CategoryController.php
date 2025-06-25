@@ -4,13 +4,27 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Service\CategoryService;
+
 final class CategoryController extends AbstractController
 {
     public const string VIEW_LIST = 'category/list';
     public const string VIEW_ADD = 'category/add';
 
+    private readonly CategoryService $service;
+
+    public function __construct()
+    {
+        $this->service = new CategoryService();
+    }
+
     public function list(): void
     {
+        $categories = $this->service->findAll();
+
+        echo "Quantidade:" . count($categories);
+
         $categories = [
             [
                 'id' => 1,
