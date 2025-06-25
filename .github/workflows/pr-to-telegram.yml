@@ -1,0 +1,26 @@
+name: Notificar Telegram - Pull Request Criado
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  notify-telegram:
+    name: Enviar notificação para o Telegram
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar mensagem formatada para o Telegram
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d message_thread_id="${{ secrets.TELEGRAM_TOPIC_ID }}" \
+            -d parse_mode="MarkdownV2" \
+            -d text="📣 *Novo Pull Request Criado!*
+
+📝 *Título:* [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+👤 *Autor:* [${{ github.event.pull_request.user.login }}](https://github.com/${{ github.event.pull_request.user.login }})
+🔀 *Branch:* \`${{ github.event.pull_request.head.ref }}\`
+📅 *Data:* $(date '+%d/%m/%Y %H:%M') (UTC)
+
+🔗 *Link:* [Abrir Pull Request](${{ github.event.pull_request.html_url }})"
