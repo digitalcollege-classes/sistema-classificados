@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    [
+        'name' => 'Ana Souza',
+        'phone' => '(11) 91234-5678',
+        'email' => 'ana.souza@email.com',
+        'socialMedia' => '@anasouza',
+        'createdAt' => '2025-05-01 14:00:00',
+        'updatedAt' => '2025-05-02 12:45:00',
+    ],
+    [
+        'name' => 'Carlos Silva',
+        'phone' => '(21) 99876-5432',
+        'email' => 'carlos.silva@email.com',
+        'socialMedia' => '@carlossilva',
+        'createdAt' => '2025-05-03 09:30:00',
+        'updatedAt' => '2025-05-04 10:15:00',
+    ],
+    [
+        'name' => 'Mariana Lima',
+        'phone' => '(31) 98765-4321',
+        'email' => 'mariana.lima@email.com',
+        'socialMedia' => '@marianalima',
+        'createdAt' => '2025-05-05 16:20:00',
+        'updatedAt' => '2025-05-06 11:00:00',
+    ],
+    [
+        'name' => 'Pedro Alves',
+        'phone' => '(41) 97654-3210',
+        'email' => 'pedro.alves@email.com',
+        'socialMedia' => '@pedroalves',
+        'createdAt' => '2025-05-07 08:45:00',
+        'updatedAt' => '2025-05-08 13:30:00',
+    ],
+    [
+        'name' => 'Juliana Costa',
+        'phone' => '(51) 96543-2109',
+        'email' => 'juliana.costa@email.com',
+        'socialMedia' => '@julianacosta',
+        'createdAt' => '2025-05-09 15:10:00',
+        'updatedAt' => '2025-05-10 17:25:00',
+    ],
+    [
+        'name' => 'Lucas Pereira',
+        'phone' => '(61) 95432-1098',
+        'email' => 'lucas.pereira@email.com',
+        'socialMedia' => '@lucaspereira',
+        'createdAt' => '2025-05-11 12:00:00',
+        'updatedAt' => '2025-05-12 14:40:00',
+    ],
+    [
+        'name' => 'Fernanda Rocha',
+        'phone' => '(71) 94321-0987',
+        'email' => 'fernanda.rocha@email.com',
+        'socialMedia' => '@fernandarocha',
+        'createdAt' => '2025-05-13 10:30:00',
+        'updatedAt' => '2025-05-14 16:55:00',
+    ],
+    [
+        'name' => 'Rafael Mendes',
+        'phone' => '(81) 93210-9876',
+        'email' => 'rafael.mendes@email.com',
+        'socialMedia' => '@rafaelmendes',
+        'createdAt' => '2025-05-15 18:20:00',
+        'updatedAt' => '2025-05-16 19:05:00',
+    ],
+    [
+        'name' => 'Patrícia Gomes',
+        'phone' => '(91) 92109-8765',
+        'email' => 'patricia.gomes@email.com',
+        'socialMedia' => '@patriciagomes',
+        'createdAt' => '2025-05-17 07:50:00',
+        'updatedAt' => '2025-05-18 08:35:00',
+    ],
+    [
+        'name' => 'Thiago Oliveira',
+        'phone' => '(85) 91098-7654',
+        'email' => 'thiago.oliveira@email.com',
+        'socialMedia' => '@thiagooliveira',
+        'createdAt' => '2025-05-19 20:10:00',
+        'updatedAt' => '2025-05-20 21:45:00',
+    ],
+];

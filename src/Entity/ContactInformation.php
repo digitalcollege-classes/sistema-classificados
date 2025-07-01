@@ -13,6 +13,9 @@ class ContactInformation
     #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
     private int $id;
 
+    #[ORM\Column]
+    private string $name;
+
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone;
 
@@ -36,6 +39,16 @@ class ContactInformation
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getPhone(): string

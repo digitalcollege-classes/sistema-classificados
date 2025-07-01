@@ -2,10 +2,12 @@
 <?php
 
 use App\Entity\Category;
+use App\Entity\ContactInformation;
 
 $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
+$contactInformations = include 'DataFixtures/contactInformations.php';
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -16,6 +18,19 @@ foreach ($categories as $data) {
 
     $entityManager->persist($category); //INSERT INTO...
     echo "Inserindo Nova Categoria para testes..." . PHP_EOL;
+}
+
+foreach ($contactInformations as $data) {
+    $contactInformation = new ContactInformation();
+    $contactInformation->setName($data["name"]);
+    $contactInformation->setPhone($data['phone']);
+    $contactInformation->setEmail($data['email']);
+    $contactInformation->setSocialMedia($data['socialMedia']);
+    $contactInformation->setCreatedAt(new DateTime($data['createdAt']));
+    $contactInformation->setUpdatedAt(new DateTime($data['updatedAt']));
+
+    $entityManager->persist($contactInformation); //INSERT INTO...
+    echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
