@@ -1,13 +1,16 @@
 #!/usr/bin/env php
 <?php
 
+use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\ContactInformation;
 
 $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
+$addresses = include 'DataFixtures/addresses.php'; 
 $contactInformations = include 'DataFixtures/contactInformations.php';
+
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -20,6 +23,19 @@ foreach ($categories as $data) {
     echo "Inserindo Nova Categoria para testes..." . PHP_EOL;
 }
 
+foreach ($addresses as $data) {
+    $address = new Address();
+    $address->setStreet($data['street']);
+    $address->setNumber($data['number']);
+    $address->setComplement($data['complement']);
+    $address->setNeighborhood($data['neighborhood']);
+    $address->setCity($data['city']);
+    $address->setState($data['state']);
+    $address->setZipCode($data['zipCode']);
+
+    $entityManager->persist($address); // INSERT INTO...
+    echo "Inserindo Novo Endereço para testes..." . PHP_EOL;
+
 foreach ($contactInformations as $data) {
     $contactInformation = new ContactInformation();
     $contactInformation->setName($data["name"]);
@@ -31,6 +47,7 @@ foreach ($contactInformations as $data) {
 
     $entityManager->persist($contactInformation); //INSERT INTO...
     echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
+
 }
 
 $entityManager->flush();
