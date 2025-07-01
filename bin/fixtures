@@ -1,13 +1,18 @@
 <?php
 
+use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\Review;
+use App\Entity\ContactInformation;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
+
 $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
 $reviews = include 'DataFixtures/reviews.php';
+$addresses = include 'DataFixtures/addresses.php'; 
+$contactInformations = include 'DataFixtures/contactInformations.php';
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -31,6 +36,33 @@ foreach ($reviews as $data) {
 
     $entityManager->persist($review);
     echo "Inserindo nova Review para testes..." . PHP_EOL;
+}
+
+foreach ($addresses as $data) {
+    $address = new Address();
+    $address->setStreet($data['street']);
+    $address->setNumber($data['number']);
+    $address->setComplement($data['complement']);
+    $address->setNeighborhood($data['neighborhood']);
+    $address->setCity($data['city']);
+    $address->setState($data['state']);
+    $address->setZipCode($data['zipCode']);
+
+    $entityManager->persist($address); // INSERT INTO...
+    echo "Inserindo Novo Endereço para testes..." . PHP_EOL;
+}
+
+foreach ($contactInformations as $data) {
+    $contactInformation = new ContactInformation();
+    $contactInformation->setName($data["name"]);
+    $contactInformation->setPhone($data['phone']);
+    $contactInformation->setEmail($data['email']);
+    $contactInformation->setSocialMedia($data['socialMedia']);
+    $contactInformation->setCreatedAt(new DateTime($data['createdAt']));
+    $contactInformation->setUpdatedAt(new DateTime($data['updatedAt']));
+
+    $entityManager->persist($contactInformation); //INSERT INTO...
+    echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
