@@ -1,16 +1,18 @@
-#!/usr/bin/env php
 <?php
 
 use App\Entity\Address;
 use App\Entity\Category;
+use App\Entity\Review;
 use App\Entity\ContactInformation;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
+$reviews = include 'DataFixtures/reviews.php';
 $addresses = include 'DataFixtures/addresses.php'; 
 $contactInformations = include 'DataFixtures/contactInformations.php';
-
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -19,8 +21,21 @@ foreach ($categories as $data) {
     $category->setUpdatedAt(new DateTime($data['updatedAt']));
     $category->setCreatedAt(new DateTime($data['createdAt']));
 
-    $entityManager->persist($category); //INSERT INTO...
-    echo "Inserindo Nova Categoria para testes..." . PHP_EOL;
+    $entityManager->persist($category);
+    echo "Inserindo nova Categoria para testes..." . PHP_EOL;
+}
+
+foreach ($reviews as $data) {
+    $review = new Review();
+    $review->setUserId($data['userId']);
+    $review->setAdvertisementId($data['advertisementId']);
+    $review->setRating($data['rating']);
+    $review->setComment($data['comment']);
+    $review->setCreatedAt(new DateTime($data['createdAt']));
+    $review->setUpdatedAt(new DateTime($data['updatedAt']));
+
+    $entityManager->persist($review);
+    echo "Inserindo nova Review para testes..." . PHP_EOL;
 }
 
 foreach ($addresses as $data) {
@@ -35,6 +50,7 @@ foreach ($addresses as $data) {
 
     $entityManager->persist($address); // INSERT INTO...
     echo "Inserindo Novo Endereço para testes..." . PHP_EOL;
+}
 
 foreach ($contactInformations as $data) {
     $contactInformation = new ContactInformation();
@@ -47,7 +63,6 @@ foreach ($contactInformations as $data) {
 
     $entityManager->persist($contactInformation); //INSERT INTO...
     echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
-
 }
 
 $entityManager->flush();
