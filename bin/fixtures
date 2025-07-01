@@ -1,11 +1,13 @@
 #!/usr/bin/env php
 <?php
 
+use App\Entity\Address;
 use App\Entity\Category;
 
 $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
+$addresses = include 'DataFixtures/addresses.php'; 
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -16,6 +18,20 @@ foreach ($categories as $data) {
 
     $entityManager->persist($category); //INSERT INTO...
     echo "Inserindo Nova Categoria para testes..." . PHP_EOL;
+}
+
+foreach ($addresses as $data) {
+    $address = new Address();
+    $address->setStreet($data['street']);
+    $address->setNumber($data['number']);
+    $address->setComplement($data['complement']);
+    $address->setNeighborhood($data['neighborhood']);
+    $address->setCity($data['city']);
+    $address->setState($data['state']);
+    $address->setZipCode($data['zipCode']);
+
+    $entityManager->persist($address); // INSERT INTO...
+    echo "Inserindo Novo Endereço para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
