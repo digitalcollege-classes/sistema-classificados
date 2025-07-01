@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    [
+        'userId' => 1,
+        'advertisementId' => 1,
+        'rating' => 5,
+        'comment' => 'Excelente produto, super recomendo!',
+        'createdAt' => '2025-05-01 14:00:00',
+        'updatedAt' => '2025-05-02 12:45:00',
+    ],
+    [
+        'userId' => 2,
+        'advertisementId' => 2,
+        'rating' => 4,
+        'comment' => 'Bom produto, mas poderia ser melhor.',
+        'createdAt' => '2025-04-20 09:30:00',
+        'updatedAt' => '2025-04-22 11:15:00',
+    ],
+    [
+        'userId' => 3,
+        'advertisementId' => 3,
+        'rating' => 3,
+        'comment' => 'Produto ok, mas não atendeu minhas expectativas.',
+        'createdAt' => '2025-03-10 10:00:00',
+        'updatedAt' => '2025-03-12 13:20:00',
+    ],
+    [
+        'userId' => 4,
+        'advertisementId' => 4,
+        'rating' => 2,
+        'comment' => 'Não gostei muito, achei que faltou qualidade.',
+        'createdAt' => '2025-06-01 16:30:00',
+        'updatedAt' => '2025-06-02 17:45:00',
+    ],
+    [
+        'userId' => 5,
+        'advertisementId' => 5,
+        'rating' => 1,
+        'comment' => 'Péssimo produto, não recomendo.',
+        'createdAt' => '2025-05-05 11:00:00',
+        'updatedAt' => '2025-05-06 14:00:00',
+    ],
+    [
+        'userId' => 6,
+        'advertisementId' => 6,
+        'rating' => 5,
+        'comment' => 'Produto excelente, superou minhas expectativas!',
+        'createdAt' => '2025-06-10 18:20:00',
+        'updatedAt' => '2025-06-12 09:00:00',
+    ],
+    [
+        'userId' => 7,
+        'advertisementId' => 7,
+        'rating' => 4,
+        'comment' => 'Bom produto, mas o preço poderia ser melhor.',
+        'createdAt' => '2025-05-15 15:00:00',
+        'updatedAt' => '2025-05-17 16:30:00',
+    ],
+    [
+        'userId' => 8,
+        'advertisementId' => 8,
+        'rating' => 3,
+        'comment' => 'Produto razoável, atendeu ao que eu precisava.',
+        'createdAt' => '2025-03-25 12:40:00',
+        'updatedAt' => '2025-03-26 08:30:00',
+    ],
+    [
+        'userId' => 9,
+        'advertisementId' => 9,
+        'rating' => 2,
+        'comment' => 'Não gostei muito, achei que faltou qualidade.',
+        'createdAt' => '2025-06-18 10:00:00',
+        'updatedAt' => '2025-06-19 14:30:00',
+    ],
+    [
+        'userId' => 10,
+        'advertisementId' => 10,
+        'rating' => 1,
+        'comment' => 'Péssimo produto, não recomendo.',
+        'createdAt' => '2025-07-01 11:30:00',
+        'updatedAt' => '2025-07-02 13:45:00',
+    ],
+];
