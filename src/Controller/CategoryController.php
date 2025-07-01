@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Service\CategoryService;
 
 final class CategoryController extends AbstractController
@@ -23,7 +22,7 @@ final class CategoryController extends AbstractController
     {
         $categories = $this->service->findAll();
 
-        echo "Quantidade:" . count($categories);
+        echo 'Quantidade:'.count($categories);
 
         $categories = [
             [
