@@ -4,6 +4,7 @@ use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\Review;
 use App\Entity\ContactInformation;
+use App\Entity\Advertiser;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -13,6 +14,7 @@ $categories = include 'DataFixtures/categories.php';
 $reviews = include 'DataFixtures/reviews.php';
 $addresses = include 'DataFixtures/addresses.php'; 
 $contactInformations = include 'DataFixtures/contactInformations.php';
+$advertisers = include 'DataFixtures/advertisers.php';
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -63,6 +65,15 @@ foreach ($contactInformations as $data) {
 
     $entityManager->persist($contactInformation); //INSERT INTO...
     echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
+}
+
+foreach ($advertisers as $data) {
+    $advertiser = new Advertiser($data['name'], $data['email'],$data['documento'],$data['phone']);
+    $advertiser->setStatus($data['status']);
+    $advertiser->setUpdatedAt(new DateTime($data['updatedAt']));
+    $advertiser->setCreatedAt(new DateTime($data['createdAt']));
+    $entityManager->persist($advertiser); //INSERT INTO...
+    echo "Inserindo Novo Advertiser para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
