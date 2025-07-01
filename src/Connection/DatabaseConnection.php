@@ -10,6 +10,6 @@ class DatabaseConnection
 {
     public function getEntityManager(): EntityManager
     {
-        return include dirname(__DIR__, 2) . '/doctrine.php';
+        return include dirname(__DIR__, 2).'/doctrine.php';
     }
 }

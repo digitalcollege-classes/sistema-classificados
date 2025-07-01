@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Connection\DatabaseConnection;
 use App\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 
