@@ -1,7 +1,9 @@
+#!/usr/bin/env php
 <?php
 
 use App\Entity\Address;
 use App\Entity\Category;
+use App\Entity\AdvertiserPlan;
 use App\Entity\Review;
 use App\Entity\ContactInformation;
 use App\Entity\Advertiser;
@@ -14,11 +16,11 @@ $entityManager = require dirname(__DIR__) . '/doctrine.php';
 
 $categories = include 'DataFixtures/categories.php';
 $reviews = include 'DataFixtures/reviews.php';
-$addresses = include 'DataFixtures/addresses.php'; 
+$addresses = include 'DataFixtures/addresses.php';
 $contactInformations = include 'DataFixtures/contactInformations.php';
 $advertisers = include 'DataFixtures/advertisers.php';
 $advertisements = include 'DataFixtures/advertisements.php';
-
+$advertiserPlans = include 'DataFixtures/advertiserPlans.php';
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -95,6 +97,21 @@ foreach ($advertisements as $data) {
 
     $entityManager->persist($advertisement); //INSERT INTO...
     echo "Inserindo Novo Advertisement para testes..." . PHP_EOL;
+}
+
+foreach ($advertiserPlans as $data) {
+    $advertiserPlan = new AdvertiserPlan();
+    $advertiserPlan->setName($data['name']);
+    $advertiserPlan->setAdvertiserId($data['advertiserId']);
+    $advertiserPlan->setPlanId($data['planId']);
+    $advertiserPlan->setStartDate(new DateTime($data['startDate']));
+    $advertiserPlan->setEndDate(new DateTime($data['endDate']));
+    $advertiserPlan->setStatus($data['status']);
+    $advertiserPlan->setCreatedAt(new DateTime($data['createdAt']));
+    $advertiserPlan->setUpdatedAt(new DateTime($data['updatedAt']));
+
+    $entityManager->persist($advertiserPlan); //INSERT INTO...
+    echo "Inserindo Novo Plano de Anunciante para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
