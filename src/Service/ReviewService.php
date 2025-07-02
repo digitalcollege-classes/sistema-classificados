@@ -5,12 +5,21 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Review;
+use Doctrine\ORM\EntityRepository;
 
-class ReviewService
+class ReviewService extends AbstractService
 {
+    private readonly EntityRepository $repository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->repository = $this->entityManager->getRepository(Review::class);
+    }
+
     public function findAll(): array
     {
-        return [];
+        return $this->repository->findAll();
     }
 
     public function findBy(array $criteria): array
