@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Advertisement;
+use App\Service\AdvertisementService;
 
 final class AdvertisementController extends AbstractController
 {
@@ -15,12 +15,9 @@ final class AdvertisementController extends AbstractController
 
     public function list(): void
     {
-        $entityManager = require_once dirname(path: __DIR__, levels: 2).'/doctrine.php';
+        $service = new AdvertisementService();
 
-        $repository = $entityManager->getRepository(Advertisement::class);
-
-        // SELECT * FROM
-        $anuncios = $repository->findAll();
+        $anuncios = $service->findAll();
 
         $this->render(self::VIEW_LIST, [
             'anuncios' => $anuncios,
