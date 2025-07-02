@@ -5,6 +5,8 @@ use App\Entity\Category;
 use App\Entity\Review;
 use App\Entity\ContactInformation;
 use App\Entity\Advertiser;
+use App\Entity\Advertisement;
+use Doctrine\ORM\EntityManagerInterface;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -15,6 +17,8 @@ $reviews = include 'DataFixtures/reviews.php';
 $addresses = include 'DataFixtures/addresses.php'; 
 $contactInformations = include 'DataFixtures/contactInformations.php';
 $advertisers = include 'DataFixtures/advertisers.php';
+$advertisements = include 'DataFixtures/advertisements.php';
+
 
 foreach ($categories as $data) {
     $category = new Category();
@@ -74,6 +78,23 @@ foreach ($advertisers as $data) {
     $advertiser->setCreatedAt(new DateTime($data['createdAt']));
     $entityManager->persist($advertiser); //INSERT INTO...
     echo "Inserindo Novo Advertiser para testes..." . PHP_EOL;
+}
+
+foreach ($advertisements as $data) {
+    $advertisement = new Advertisement(
+        $data['advertiserId'],
+        $data['categoryId'],
+        $data['title']
+    );
+    $advertisement->setDescription($data['description']);
+    $advertisement->setPrice($data['price']);
+    $advertisement->setStatus($data['status']);
+    $advertisement->setpublishedAt(new DateTime($data['updatedAt']));
+    $advertisement->setCreatedAt(new DateTime($data['createdAt']));
+    $advertisement->setUpdatedAt(new DateTime($data['updatedAt']));
+
+    $entityManager->persist($advertisement); //INSERT INTO...
+    echo "Inserindo Novo Advertisement para testes..." . PHP_EOL;
 }
 
 $entityManager->flush();
