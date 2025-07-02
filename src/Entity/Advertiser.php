@@ -14,10 +14,10 @@ class Advertiser
     #[ORM\Id] #[ORM\GeneratedValue] #[ORM\Column]
     private int $id;
 
-    #[ORM\Column(type: 'string', length: 36, unique: true)]
+    #[ORM\Column(type: 'string', length: 100)]
     private string $name;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, unique: true)]
     private string $email;
 
     #[ORM\Column(length: 20)]
@@ -45,7 +45,7 @@ class Advertiser
         $this->email = $email;
         $this->document = $document;
         $this->phone = $phone;
-        $this->status = AdvertisementStatusEnum::INACTIVE;
+        $this->status = AdvertiserStatusEnum::INACTIVE;
         $this->createdAt = new DateTime();
         $this->updatedAt = new DateTime();
     }
@@ -99,25 +99,30 @@ class Advertiser
         $this->updateTimestamps();
     }
 
-    public function getStatus(): AdvertisementStatusEnum
+    public function getStatus(): AdvertiserStatusEnum
     {
         return $this->status;
     }
 
+    public function setStatus(AdvertiserStatusEnum $status): void
+    {
+        $this->status = $status;
+    }
+
     public function isActive(): bool
     {
-        return AdvertisementStatusEnum::ACTIVE === $this->status;
+        return AdvertiserStatusEnum::ACTIVE === $this->status;
     }
 
     public function activate(): void
     {
-        $this->status = AdvertisementStatusEnum::ACTIVE;
+        $this->status = AdvertiserStatusEnum::ACTIVE;
         $this->updateTimestamps();
     }
 
     public function deactivate(): void
     {
-        $this->status = AdvertisementStatusEnum::INACTIVE;
+        $this->status = AdvertiserStatusEnum::INACTIVE;
         $this->updateTimestamps();
     }
 
@@ -129,6 +134,16 @@ class Advertiser
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $datetime): void
+    {
+        $this->updatedAt = $datetime;
+    }
+
+    public function setCreatedAt(DateTime $datetime): void
+    {
+        $this->createdAt = $datetime;
     }
 
     private function updateTimestamps(): void
