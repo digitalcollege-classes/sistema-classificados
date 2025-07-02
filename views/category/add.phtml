@@ -1,31 +1,44 @@
 <section class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <div class="card shadow-lg border-0">
-                <div class="card-body p-4">
-                    <h1 class="mb-4 text-center fw-bold text-primary">Nova Categoria</h1>
-                    <form id="categoryForm" action="/categorias/adicionar" method="post" enctype="multipart/form-data" autocomplete="off">
-                        <div class="mb-3">
-                            <label for="name" class="form-label fw-semibold">Nome</label>
-                            <input type="text" id="name" name="name" class="form-control form-control-lg" required placeholder="Digite o nome da categoria">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label fw-semibold">Descrição</label>
-                            <textarea id="description" name="description" class="form-control form-control-lg" required rows="3" placeholder="Descreva a categoria"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label fw-semibold">Foto</label>
-                            <input type="file" id="photo" name="photo" class="form-control form-control-lg" accept="image/*" required>
-                        </div>
-                        <div id="photoError" class="text-danger mb-3" hidden></div>
-                        <div class="d-grid">
-                            <button id="saveBtn" type="submit" class="btn btn-primary btn-lg">
-                                <i class="bi bi-save me-2"></i>Salvar
-                            </button>
-                        </div>
-                    </form>
+        <div class="col-12 col-md-10 col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-4">
+            <h2 class="mb-4 text-primary d-flex align-items-center gap-2">
+                <span class="material-icons">category</span> Nova Categoria
+            </h2>
+            <form id="categoryForm" action="/categorias/adicionar" method="post" enctype="multipart/form-data" autocomplete="off">
+                <div class="row">
+                <div class="col-md-5 d-flex align-items-center justify-content-center mb-4 mb-md-0">
+                    <img src="/assets/images/add-category.svg" width="80%" alt="Adicionar categoria" style="max-width:220px;">
                 </div>
+                <div class="col-md-7">
+                    <div class="mb-3">
+                    <label for="name" class="form-label fw-semibold d-flex align-items-center gap-1">
+                        <span class="material-icons">edit</span> Nome
+                    </label>
+                    <input type="text" id="name" name="name" class="form-control form-control-lg" required placeholder="Digite o nome da categoria">
+                    </div>
+                    <div class="mb-3">
+                    <label for="description" class="form-label fw-semibold d-flex align-items-center gap-1">
+                        <span class="material-icons">notes</span> Descrição
+                    </label>
+                    <textarea id="description" name="description" class="form-control form-control-lg" required rows="3" placeholder="Descreva a categoria"></textarea>
+                    </div>
+                    <div class="mb-3">
+                    <label for="photo" class="form-label fw-semibold d-flex align-items-center gap-1">
+                        <span class="material-icons">photo_camera</span> Foto
+                    </label>
+                    <input type="file" id="photo" name="photo" class="form-control form-control-lg" accept="image/*" required>
+                    <div id="photoError" class="text-danger mt-2" hidden></div>
+                    </div>
+                    <button id="saveBtn" type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                    <span class="material-icons">save</span> Salvar
+                    </button>
+                </div>
+                </div>
+            </form>
             </div>
+        </div>
         </div>
     </div>
 </section>
