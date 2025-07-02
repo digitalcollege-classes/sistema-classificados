@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Connection\DatabaseConnection;
 use App\Entity\Advertisement;
 
 class AdvertisementService extends AbstractService
 {
     public function findAll(): array
     {
-        return [];
+        $entityManager = (new DatabaseConnection)->getEntityManager();
+
+        $repository = $entityManager->getRepository(Advertisement::class);
+
+        return $repository->findAll();
     }
 
     public function findBy(array $criteria): array
