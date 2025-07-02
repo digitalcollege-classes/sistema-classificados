@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityRepository;
 class ReviewService extends AbstractService
 {
     private readonly EntityRepository $repository;
-    
+
     public function __construct()
     {
         parent::__construct();
