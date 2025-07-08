@@ -541,3 +541,54 @@ body {
     border-radius: 1.2rem !important;
   }
 }
+
+/* === PLANOS === */
+.main-card-planos {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 12px 0 rgba(34,87,122,0.09);
+  border: 1px solid #F0F2F5;
+}
+
+.badge-success {
+  background-color: var(--success) !important;
+  color: var(--white) !important;
+}
+
+.badge-warning {
+  background-color: var(--warning) !important;
+  color: var(--white) !important;
+}
+
+.badge-danger {
+  background-color: var(--danger) !important;
+  color: var(--white) !important;
+}
+
+.badge-secondary {
+  background-color: var(--secondary) !important;
+  color: var(--white) !important;
+}
+
+.btn-group .btn {
+  margin: 0 2px;
+  border-radius: 0.5rem !important;
+}
+
+.table-hover > tbody > tr:hover td,
+.table-hover > tbody > tr:hover .text-primary,
+.table-hover > tbody > tr:hover .fw-semibold {
+  color: var(--white) !important;
+}
+
+@media (max-width: 767.98px) {
+  .btn-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+    margin: 0;
+  }
+}

@@ -47,4 +47,4 @@ final class AdvertiserPlanController extends AbstractController
     {
         echo 'Removendo plano';
     }
-} 
+}
