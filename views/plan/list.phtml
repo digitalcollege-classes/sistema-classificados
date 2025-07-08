@@ -1,0 +1,87 @@
+<?php
+// Preparação dos dados
+?>
+
+<section class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 main-card-planos">
+        <!-- Cabeçalho da página e botão de adicionar plano -->
+        <div class="row align-items-center mb-4 g-2">
+            <div class="col-12 col-md-7 d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <span class="material-icons text-primary fs-1" style="font-size:2.2rem;">card_membership</span>
+                <h1 class="mb-0 fw-bold text-primary" style="font-size:2rem;">Planos de Anunciantes</h1>
+            </div>
+            <div class="col-12 col-md-5 d-flex justify-content-center justify-content-md-end">
+                <a href="/planos/adicionar" class="btn btn-primary d-flex align-items-center gap-2 w-80 w-md-auto" style="max-width:260px;">
+                    <span class="material-icons">add</span> Adicionar Plano
+                </a>
+            </div>
+        </div>
+
+        <!-- Mensagem caso não haja planos -->
+        <?php if (empty($plans)): ?>
+            <div class="alert alert-info d-flex align-items-center gap-2">
+                <span class="material-icons">info</span>
+                Nenhum plano cadastrado.
+            </div>
+        <?php else: ?>
+            <!-- Tabela de planos -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Anunciante ID</th>
+                            <th>Nome do Plano</th>
+                            <th>Data Início</th>
+                            <th>Data Fim</th>
+                            <th>Status</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($plans as $plan): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($plan->getId()) ?></td>
+                                <td><?= htmlspecialchars($plan->getAdvertiserId()) ?></td>
+                                <td class="fw-semibold text-primary">
+                                    <?= htmlspecialchars($plan->getName()) ?>
+                                </td>
+                                <td><?= $plan->getStartDate() ? $plan->getStartDate()->format('Y-m-d') : '-' ?></td>
+                                <td><?= $plan->getEndDate() ? $plan->getEndDate()->format('Y-m-d') : '-' ?></td>
+                                <td>
+                                    <?php
+                                    $status = $plan->getStatus()->value;
+                                    [$statusClass, $statusText] = match ($status) {
+                                        'ACTIVE' => ['badge-success', 'Ativo'],
+                                        'EXPIRED' => ['badge-warning', 'Expirado'],
+                                        'CANCELED' => ['badge-danger', 'Cancelado'],
+                                        default => ['badge-secondary', $status]
+                                    };
+                                    ?>
+                                    <span class="badge <?= $statusClass ?>"><?= $statusText ?></span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Ações do plano">
+                                        <a href="/planos/view?id=<?= urlencode($plan->getId()) ?>" class="btn btn-sm btn-info d-flex align-items-center gap-1">
+                                            <span class="material-icons" style="font-size:1.1rem;">visibility</span>
+                                            <span>Ver</span>
+                                        </a>
+                                        <a href="/planos/editar?id=<?= urlencode($plan->getId()) ?>" class="btn btn-sm btn-warning d-flex align-items-center gap-1">
+                                            <span class="material-icons" style="font-size:1.1rem;">edit</span>
+                                            <span>Editar</span>
+                                        </a>
+                                        <a href="/planos/excluir?id=<?= urlencode($plan->getId()) ?>" class="btn btn-sm btn-danger d-flex align-items-center gap-1"
+                                            onclick="return confirm('Tem certeza que deseja excluir este plano?')">
+                                            <span class="material-icons" style="font-size:1.1rem;">delete</span>
+                                            <span>Excluir</span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+</section> 
