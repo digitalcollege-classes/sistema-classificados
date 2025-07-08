@@ -20,4 +20,9 @@ abstract class AbstractController
 
         include '../views/_layouts/footer.phtml';
     }
+
+    public function redirectToURL(string $url): void
+    {
+        header("location: {$url}");
+    }
 }
