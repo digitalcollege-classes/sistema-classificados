@@ -112,4 +112,29 @@
       eyeIcon.textContent = 'visibility';
     }
   });
+
+  
+function add(): void
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nome = $_POST['nome'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $senha = $_POST['password'] ?? '';
+        // Valide os dados e faça hash da senha!
+        if ($nome && $email && $senha) {
+            // Exemplo: usando Doctrine
+            $entityManager = $this->getEntityManager();
+            $user = new User();
+            $user->setName($nome);
+            $user->setEmail($email);
+            $user->setPassword(password_hash($senha, PASSWORD_DEFAULT));
+            $entityManager->persist($user);
+            $entityManager->flush();
+            header('Location: /login');
+            exit;
+        }
+        // Se erro, pode exibir mensagem na view
+    }
+    $this->render(self::VIEW_ADD);
+}
 </script>

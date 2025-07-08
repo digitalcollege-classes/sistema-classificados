@@ -21,6 +21,9 @@ class AdvertiserPlan
     private int $planId;
 
     #[ORM\Column]
+    private string $name;
+
+    #[ORM\Column]
     private DateTime $startDate;
 
     #[ORM\Column]
@@ -63,6 +66,16 @@ class AdvertiserPlan
     public function setPlanId(int $planId): void
     {
         $this->planId = $planId;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getStartDate(): DateTime

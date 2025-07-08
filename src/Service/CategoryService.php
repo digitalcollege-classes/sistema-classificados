@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityRepository;
 class CategoryService extends AbstractService
 {
     private readonly EntityRepository $repository;
+<<<<<<< HEAD
 
     public function __construct()
     {
@@ -17,6 +18,13 @@ class CategoryService extends AbstractService
         $this->repository = $this->entityManager->getRepository(Category::class);
     }
 
+=======
+    public function __construct()   
+    {
+        $entityManager = (new DatabaseConnection())->getEntityManager();
+        $this->repository = $entityManager->getRepository(Category::class);
+    }
+>>>>>>> 888ca49 (feat: add advertiserPlan fixtures)
     public function findAll(): array
     {
         return $this->repository->findAll();
