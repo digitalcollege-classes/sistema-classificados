@@ -10,4 +10,4 @@ return [
     '/planos/editar' => [AdvertiserPlanController::class, 'edit'],
     '/planos/view' => [AdvertiserPlanController::class, 'view'],
     '/planos/excluir' => [AdvertiserPlanController::class, 'remove'],
-]; 
+];

@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\AdvertiserPlan;
 use Doctrine\ORM\EntityRepository;
+use InvalidArgumentException;
 
 class AdvertiserPlanService extends AbstractService
 {
@@ -30,11 +31,11 @@ class AdvertiserPlanService extends AbstractService
     public function find(int $id): AdvertiserPlan
     {
         $plan = $this->repository->find($id);
-        
+
         if (!$plan) {
-            throw new \InvalidArgumentException('Plano não encontrado');
+            throw new InvalidArgumentException('Plano não encontrado');
         }
-        
+
         return $plan;
     }
 
@@ -42,7 +43,7 @@ class AdvertiserPlanService extends AbstractService
     {
         $this->entityManager->persist($advertiserPlan);
         $this->entityManager->flush();
-        
+
         return $advertiserPlan;
     }
 
