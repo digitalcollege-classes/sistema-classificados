@@ -73,8 +73,10 @@ foreach ($contactInformations as $data) {
     echo "Inserindo Nova Informação de Contato para testes..." . PHP_EOL;
 }
 
+$password = password_hash('123456', PASSWORD_BCRYPT);
 foreach ($advertisers as $data) {
     $advertiser = new Advertiser($data['name'], $data['email'],$data['documento'],$data['phone']);
+    $advertiser->setPassword($password);
     $advertiser->setStatus($data['status']);
     $advertiser->setUpdatedAt(new DateTime($data['updatedAt']));
     $advertiser->setCreatedAt(new DateTime($data['createdAt']));

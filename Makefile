@@ -20,7 +20,7 @@ container_php:
 
 # Entra dentro do container MySQL
 container_mysql:
-	docker compose exec mysql bash
+	docker compose exec mysql bash -c "mysql -u root -proot"
 
 # Entra dentro do container Nginx
 container_nginx:
@@ -41,6 +41,9 @@ reset_banco:
 
 style:
 	docker compose exec -T -e PHP_CS_FIXER_IGNORE_ENV=1 php bash -c "php vendor/bin/php-cs-fixer fix --dry-run --diff -vvv"
+
+fixtures:
+	docker compose exec -T php bash -c "php bin/fixtures"
 
 # Comando para rodar todos os passos juntos
 setup: up install_dependencies

@@ -20,6 +20,9 @@ class Advertiser
     #[ORM\Column(length: 100, unique: true)]
     private string $email;
 
+    #[ORM\Column]
+    private string $password;
+
     #[ORM\Column(length: 20)]
     private string $document;
 
@@ -97,6 +100,16 @@ class Advertiser
     {
         $this->phone = $phone;
         $this->updateTimestamps();
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 
     public function getStatus(): AdvertiserStatusEnum
