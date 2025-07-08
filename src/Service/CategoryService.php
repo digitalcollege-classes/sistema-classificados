@@ -43,5 +43,7 @@ class CategoryService extends AbstractService
 
     public function create(Category $category): void
     {
+        $this->entityManager->persist($category);
+        $this->entityManager->flush();
     }
 }

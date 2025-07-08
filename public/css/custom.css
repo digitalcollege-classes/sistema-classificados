@@ -145,7 +145,6 @@ body {
 }
 .table td {
   vertical-align: middle;
-  text-align: center;
   background: var(--white) !important;
   color: var(--text) !important;
   border: none !important;
