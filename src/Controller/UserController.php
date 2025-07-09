@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Connection\DatabaseConnection;
+use App\Entity\Advertiser;
+
 final class UserController extends AbstractController
 {
     public const string VIEW_LIST = 'user/list';
@@ -55,7 +58,30 @@ final class UserController extends AbstractController
 
     public function add(): void
     {
-        $this->render(self::VIEW_ADD);
+        if (true === empty($_POST)) {
+            $this->render(self::VIEW_ADD);
+
+            return;
+        }
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $user = new Advertiser(
+            $name,
+            $email,
+            'documento',
+            'telefone'
+        );
+        $user->setPassword($password);
+
+        $entityManager = (new DatabaseConnection)->getEntityManager();
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->redirectToURL('/login');
     }
 
     public function profile(): void
