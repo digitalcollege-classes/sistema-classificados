@@ -8,6 +8,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class Category
 {
     #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
@@ -25,7 +26,14 @@ class Category
     #[ORM\Column]
     private DateTime $updatedAt;
 
-    public function __construct()
+    #[ORM\PreUpdate]
+    public function preUpdate(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    #[ORM\PrePersist]
+    public function prePersist(): void
     {
         $this->createdAt = new DateTime();
         $this->updatedAt = new DateTime();
