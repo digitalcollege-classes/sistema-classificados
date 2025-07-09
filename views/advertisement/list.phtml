@@ -19,6 +19,12 @@
                 Título
                 </span>
             </th>
+              <th>
+                <span class="d-flex align-items-center gap-2">
+                <span class="material-icons" aria-hidden="true">tag</span>
+                Categoria
+                </span>
+              </th>
             <th>
                 <span class="d-flex align-items-center gap-2">
                 <span class="material-icons" aria-hidden="true">flag</span>
@@ -43,6 +49,7 @@
           <?php foreach ($anuncios as $cada): ?>
             <tr>
               <td><?= htmlspecialchars($cada->getTitle()) ?></td>
+              <td><?= $cada->getCategory()->getName() ?></td>
               <td>
                 <span class="badge badge-draft">
                   <?php

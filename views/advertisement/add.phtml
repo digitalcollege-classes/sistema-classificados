@@ -40,6 +40,14 @@
                   </label>
                   <select id="categoria" name="categoria" class="form-select" required>
                     <option selected disabled>Selecione</option>
+
+                      <?php
+                        foreach ($categories as $category) {
+                            echo "
+                                <option value='{$category->getId()}'>{$category->getName()}</option>
+                            ";
+                        }
+                      ?>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">

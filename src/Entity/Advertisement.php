@@ -15,7 +15,10 @@ class Advertisement
     private int $id;
 
     private int $advertiserId;
-    private int $categoryId;
+
+    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    private Category $category;
 
     #[ORM\Column(length: 100)]
     private string $title;
@@ -39,14 +42,10 @@ class Advertisement
     private DateTime $updatedAt;
 
     public function __construct(
-        int $advertiserId,
-        int $categoryId,
         string $title,
         ?string $description = null,
         ?float $price = null
     ) {
-        $this->advertiserId = $advertiserId;
-        $this->categoryId = $categoryId;
         $this->title = $title;
         $this->description = $description;
         $this->price = $price;
@@ -75,14 +74,14 @@ class Advertisement
         $this->advertiserId = $advertiserId;
     }
 
-    public function getCategoryId(): int
+    public function getCategory(): Category
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
-    public function setCategoryId(int $categoryId): void
+    public function setCategory(Category $category): void
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
     }
 
     public function getTitle(): string

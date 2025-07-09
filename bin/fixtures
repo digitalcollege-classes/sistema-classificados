@@ -32,6 +32,7 @@ foreach ($categories as $data) {
     $entityManager->persist($category);
     echo "Inserindo nova Categoria para testes..." . PHP_EOL;
 }
+$entityManager->flush();
 
 foreach ($reviews as $data) {
     $review = new Review();
@@ -85,13 +86,16 @@ foreach ($advertisers as $data) {
 }
 
 foreach ($advertisements as $data) {
+    $category = $entityManager
+        ->getRepository(Category::class)
+        ->find($data['categoryId']);
+
     $advertisement = new Advertisement(
-        $data['advertiserId'],
-        $data['categoryId'],
-        $data['title']
+        $data['title'],
+        $data['description'],
+        $data['price']
     );
-    $advertisement->setDescription($data['description']);
-    $advertisement->setPrice($data['price']);
+    $advertisement->setCategory($category);
     $advertisement->setStatus($data['status']);
     $advertisement->setpublishedAt(new DateTime($data['updatedAt']));
     $advertisement->setCreatedAt(new DateTime($data['createdAt']));

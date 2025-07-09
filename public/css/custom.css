@@ -246,7 +246,7 @@ body {
 .form-control, .form-select {
   border-radius: 0.5rem;
   border: 1px solid var(--gray-light);
-  background: var(--gray-light);
+  background-color: var(--gray-light);
   color: var(--text);
 }
 .form-control:focus, .form-select:focus {
