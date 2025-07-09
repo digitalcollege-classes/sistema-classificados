@@ -24,10 +24,32 @@ final class AdvertisementController extends AbstractController
         ]);
     }
 
-    public function add(): void
-    {
-        $this->render(self::VIEW_ADD);
+public function add(): void
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $titulo = $_POST['titulo'] ?? '';
+        $descricao = $_POST['descricao'] ?? '';
+        $status = $_POST['status'] ?? '';
+        $categoria = $_POST['categoria'] ?? '';
+
+        // Aqui você pode adicionar validações
+
+        $service = new \App\Service\AdvertisementService();
+        $service->create([
+            'titulo' => $titulo,
+            'descricao' => $descricao,
+            'status' => $status,
+            'categoria' => $categoria,
+            // Adicione outros campos se necessário
+        ]);
+
+        header('Location: /anuncios');
+        exit;
     }
+
+    // Se GET, apenas renderiza o formulário
+    $this->render('advertisement/add');
+}
 
     public function update(): void
     {

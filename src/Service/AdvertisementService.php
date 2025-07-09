@@ -37,7 +37,15 @@ class AdvertisementService extends AbstractService
     {
     }
 
-    public function create(Advertisement $advertisement): void
-    {
-    }
+    public function create(array $data): void
+{
+    $pdo = (new DatabaseConnection())->getConnection();
+    $stmt = $pdo->prepare('INSERT INTO advertisements (titulo, descricao, status, categoria_id) VALUES (?, ?, ?, ?)');
+    $stmt->execute([
+        $data['titulo'],
+        $data['descricao'],
+        $data['status'],
+        $data['categoria'],
+    ]);
+}
 }
