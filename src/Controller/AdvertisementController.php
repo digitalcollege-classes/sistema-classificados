@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\AdvertisementService;
+use App\Service\CategoryService;
 
 final class AdvertisementController extends AbstractController
 {
@@ -26,7 +27,11 @@ final class AdvertisementController extends AbstractController
 
     public function add(): void
     {
-        $this->render(self::VIEW_ADD);
+        $categories = (new CategoryService())->findAll();
+
+        $this->render(self::VIEW_ADD, [
+            'categories' => $categories,
+        ]);
     }
 
     public function update(): void
