@@ -52,14 +52,28 @@
                         <td><?= htmlspecialchars($cada->getName()) ?></td>
                         <td><?= htmlspecialchars($cada->getDescription()) ?></td>
                         <td>
-                            <img src="https://www.tgpoli.com.br/img/blog/grande/2c9cea216b8d0ddcf8c15d5841d392b4.webp" class="rounded-3" width="100px" alt="">
+                            <?php if ($cada->getImagePath()): ?>
+                                <img src="/assets/images/categories/<?= htmlspecialchars($cada->getImagePath()) ?>" 
+                                    class="rounded-3" 
+                                    width="100px" 
+                                    height="100px"
+                                    style="object-fit: cover;"
+                                    alt="<?= htmlspecialchars($cada->getName()) ?>">
+                            <?php else: ?>
+                                <img src="/assets/images/add-category.svg" 
+                                    class="rounded-3" 
+                                    width="100px" 
+                                    height="100px"
+                                    style="object-fit: cover;"
+                                    alt="Imagem padrão">
+                            <?php endif; ?>
                         </td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">
-                                <a href="/anuncios/editar/<?= $cada->getId() ?>" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                                <a href="/categorias/editar?id=<?= $cada->getId() ?>" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
                                     <span class="material-icons">edit</span> Editar
                                 </a>
-                                <a href="/anuncios/excluir/<?= $cada->getId() ?>" class="btn btn-danger btn-sm d-flex align-items-center gap-1">
+                                <a href="/categorias/excluir/<?= $cada->getId() ?>" class="btn btn-danger btn-sm d-flex align-items-center gap-1">
                                     <span class="material-icons">delete</span> Excluir
                                 </a>
                             </div>
