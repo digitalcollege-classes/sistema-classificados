@@ -53,7 +53,7 @@ class Advertiser
         $this->updatedAt = new DateTime();
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
@@ -157,6 +157,15 @@ class Advertiser
     public function setCreatedAt(DateTime $datetime): void
     {
         $this->createdAt = $datetime;
+    }
+
+    public function getShortName(): string
+    {
+        $partes = preg_split('/\s+/', trim($this->name));
+        $primeiro = $partes[0] ?? '';
+        $ultimo = count($partes) > 1 ? $partes[count($partes) - 1] : '';
+
+        return trim($primeiro.' '.$ultimo);
     }
 
     private function updateTimestamps(): void
