@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\AdvertiserPlan;
+use App\Enum\AdvertiserPlanStatusEnum;
+use DateTime;
 use Doctrine\ORM\EntityRepository;
 use InvalidArgumentException;
 
@@ -57,6 +59,19 @@ class AdvertiserPlanService extends AbstractService
     public function create(AdvertiserPlan $advertiserPlan): void
     {
         $this->entityManager->persist($advertiserPlan);
+        $this->entityManager->flush();
+    }
+
+    public function createFromForm(array $data): void
+    {
+        $plan = new AdvertiserPlan();
+        $plan->setAdvertiserId(random_int(1, 1000));
+        $plan->setName(trim($data['name']));
+        $plan->setStartDate(new DateTime($data['startDate']));
+        $plan->setStatus(AdvertiserPlanStatusEnum::from($data['status']));
+        $plan->setEndDate(!empty($data['endDate']) ? new DateTime($data['endDate']) : null);
+
+        $this->entityManager->persist($plan);
         $this->entityManager->flush();
     }
 }
