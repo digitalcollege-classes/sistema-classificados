@@ -30,7 +30,14 @@ final class AdvertiserPlanController extends AbstractController
 
     public function add(): void
     {
-        $this->render(self::VIEW_ADD);
+        if (empty($_POST)) {
+            $this->render(self::VIEW_ADD);
+
+            return;
+        }
+
+        $this->service->createFromForm($_POST);
+        $this->redirectToURL('/planos');
     }
 
     public function edit(): void
