@@ -9,6 +9,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 class AdvertiserPlan
 {
     #[ORM\Id] #[ORM\Column] #[ORM\GeneratedValue]
@@ -18,15 +19,12 @@ class AdvertiserPlan
     private int $advertiserId;
 
     #[ORM\Column]
-    private int $planId;
-
-    #[ORM\Column]
     private string $name;
 
     #[ORM\Column]
     private DateTime $startDate;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?DateTime $endDate = null;
 
     #[ORM\Column(length: 15)]
@@ -37,6 +35,19 @@ class AdvertiserPlan
 
     #[ORM\Column]
     private DateTime $updatedAt;
+
+    #[ORM\PreUpdate]
+    public function preUpdate(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    #[ORM\PrePersist]
+    public function prePersist(): void
+    {
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
+    }
 
     public function getId(): int
     {
@@ -56,16 +67,6 @@ class AdvertiserPlan
     public function setAdvertiserId(int $advertiserId): void
     {
         $this->advertiserId = $advertiserId;
-    }
-
-    public function getPlanId(): int
-    {
-        return $this->planId;
-    }
-
-    public function setPlanId(int $planId): void
-    {
-        $this->planId = $planId;
     }
 
     public function getName(): string
