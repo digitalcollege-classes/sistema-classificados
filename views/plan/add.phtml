@@ -1,0 +1,170 @@
+<section class="container py-5">
+    <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 800px;">
+        <div class="card-body p-4">
+            <!-- Cabeçalho -->
+            <div class="text-center mb-4">
+                <h1 class="fw-bold text-primary d-flex align-items-center justify-content-center gap-2">
+                    <span class="material-icons">add_circle</span> Adicionar Novo Plano
+                </h1>
+                <p class="text-secondary">Preencha os dados abaixo para criar um novo plano de anunciante</p>
+            </div>
+
+            <!-- Formulário -->
+            <form action="/planos/adicionar" method="POST" class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <!-- Removidos: ID do Plano e ID do Anunciante -->
+
+                    <!-- Nome do Plano -->
+                    <div class="col-12 col-md-6">
+                        <label for="name" class="form-label fw-semibold">
+                            <span class="material-icons text-primary" style="font-size:1.1rem;">label</span>
+                            Nome do Plano
+                        </label>
+                        <input type="text" class="form-control" id="name" name="name" 
+                               required placeholder="Ex: Plano Básico, Plano Premium, etc.">
+                        <div class="invalid-feedback">
+                            Por favor, informe o nome do plano.
+                        </div>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-12 col-md-6">
+                        <label for="status" class="form-label fw-semibold">
+                            <span class="material-icons text-primary" style="font-size:1.1rem;">toggle_on</span>
+                            Status do Plano
+                        </label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option value="">Selecione o status</option>
+                            <option value="ACTIVE">Ativo</option>
+                            <option value="EXPIRED">Expirado</option>
+                            <option value="CANCELED">Cancelado</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor, selecione o status do plano.
+                        </div>
+                    </div>
+
+                    <!-- Data de Início -->
+                    <div class="col-12 col-md-6">
+                        <label for="startDate" class="form-label fw-semibold">
+                            <span class="material-icons text-primary" style="font-size:1.1rem;">event</span>
+                            Data de Início
+                        </label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" 
+                               required>
+                        <div class="invalid-feedback">
+                            Por favor, selecione a data de início.
+                        </div>
+                    </div>
+
+                    <!-- Data de Fim -->
+                    <div class="col-12 col-md-6">
+                        <label for="endDate" class="form-label fw-semibold">
+                            <span class="material-icons text-primary" style="font-size:1.1rem;">event_busy</span>
+                            Data de Fim (Opcional)
+                        </label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" 
+                               placeholder="Deixe em branco se não houver data de fim">
+                        <div class="form-text">
+                            Deixe em branco se o plano não tiver data de expiração.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <a href="/planos" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                        <span class="material-icons">arrow_back</span>
+                        Voltar
+                    </a>
+                    <div class="d-flex gap-2">
+                        <button type="reset" class="btn btn-outline-warning d-flex align-items-center gap-2">
+                            <span class="material-icons">refresh</span>
+                            Limpar
+                        </button>
+                        <button type="submit" class="btn btn-primary d-flex align-items-center gap-2">
+                            <span class="material-icons">save</span>
+                            Salvar Plano
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+// Validação do formulário
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
+// Definir data mínima como hoje
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('startDate').min = today;
+    document.getElementById('endDate').min = today;
+    
+    // Atualizar data mínima de fim quando data de início mudar
+    document.getElementById('startDate').addEventListener('change', function() {
+        document.getElementById('endDate').min = this.value;
+    });
+});
+</script>
+
+<style>
+.form-label {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    border-radius: 0.5rem;
+    border: 1.5px solid var(--login-input-border);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(34, 87, 122, 0.25);
+}
+
+.form-text {
+    color: var(--secondary);
+    font-size: 0.875rem;
+}
+
+.btn {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+@media (max-width: 767.98px) {
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .d-flex.gap-2 {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style> 
