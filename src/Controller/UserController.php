@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Connection\DatabaseConnection;
 use App\Entity\Advertiser;
+use App\Service\AdvertiserService;
 
 final class UserController extends AbstractController
 {
@@ -13,43 +13,34 @@ final class UserController extends AbstractController
     public const string VIEW_ADD = 'user/add';
     public const string VIEW_PROFILE = 'user/profile';
 
+    private AdvertiserService $advertiserService;
+
+    public function __construct()
+    {
+        $this->advertiserService = new AdvertiserService();
+    }
+
     public function list(): void
     {
-        $usuarios = [
-            [
-                'id' => '01',
-                'status' => 'ativo',
-                'name' => 'Fulano',
-                'type' => '1',
-                'photo' => 'url',
-                'data-last-login' => '2025-05-27',
-                'data-add' => '2025-05-27',
-                'data-edit' => '2025-05-27',
-                'table-actions' => '',
-            ],
-            [
-                'id' => '02',
-                'status' => 'ativo',
-                'name' => 'Beltrano',
-                'type' => '1',
-                'photo' => 'url',
-                'data-last-login' => '2025-05-27',
-                'data-add' => '2025-05-27',
-                'data-edit' => '2025-05-27',
-                'table-actions' => '',
-            ],
-            [
-                'id' => '03',
-                'status' => 'ativo',
-                'name' => 'Cicrano',
-                'type' => '1',
-                'photo' => 'url',
-                'data-last-login' => '2025-05-27',
-                'data-add' => '2025-05-27',
-                'data-edit' => '2025-05-27',
-                'table-actions' => '',
-            ],
-        ];
+        $advertisers = $this->advertiserService->findAll();
+
+        $usuarios = [];
+        foreach ($advertisers as $advertiser) {
+            $status = $advertiser->isActive() ? 'ativo' : 'inativo';
+
+            $usuarios[] = [
+                'id' => $advertiser->getId(),
+                'name' => $advertiser->getName(),
+                'display_name' => $advertiser->getShortName(),
+                'email' => $advertiser->getEmail(),
+                'document' => $advertiser->getDocument(),
+                'phone' => $advertiser->getPhone(),
+                'type' => 'Anunciante',
+                'data-add' => $advertiser->getCreatedAt()->format('Y-m-d'),
+                'data-edit' => $advertiser->getUpdatedAt()->format('Y-m-d'),
+                'status' => $status,
+            ];
+        }
 
         $this->render(self::VIEW_LIST, [
             'usuarios' => $usuarios,
@@ -76,10 +67,7 @@ final class UserController extends AbstractController
         );
         $user->setPassword($password);
 
-        $entityManager = (new DatabaseConnection)->getEntityManager();
-
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $this->advertiserService->create($user);
 
         $this->redirectToURL('/login');
     }
