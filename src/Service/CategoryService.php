@@ -5,53 +5,53 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Category;
-use Doctrine\ORM\EntityRepository;
 
-class CategoryService extends AbstractService
+class CategoryService extends BaseService
 {
-    private readonly EntityRepository $repository;
-
     public function __construct()
     {
-        parent::__construct();
-        $this->repository = $this->entityManager->getRepository(Category::class);
+        parent::__construct(Category::class);
     }
 
-    public function findAll(): array
+    /**
+     * Busca categorias ativas.
+     */
+    public function findActive(): array
     {
-        return $this->repository->findAll();
+        return $this->findBy([], ['name' => 'ASC']);
     }
 
-    public function findBy(array $criteria): array
+    /**
+     * Busca categoria por nome.
+     */
+    public function findByName(string $name): ?Category
     {
-        return $this->repository->findBy($criteria);
+        return $this->findOneBy(['name' => $name]);
     }
 
-    public function find(int $id): ?Category
+    /**
+     * Busca categoria por nome ou lança exceção se não encontrar.
+     */
+    public function findByNameOrFail(string $name): Category
     {
-        return $this->repository->find($id);
+        return $this->findOneByOrFail(['name' => $name]);
     }
 
-    public function update(Category $category): Category
+    /**
+     * Verifica se uma categoria existe pelo nome.
+     */
+    public function existsByName(string $name): bool
     {
-        $this->entityManager->persist($category);
-        $this->entityManager->flush();
-
-        return $category;
+        return null !== $this->findOneBy(['name' => $name]);
     }
 
-    public function remove(int $id): void
+    /**
+     * Busca categorias com paginação.
+     */
+    public function findPaginated(int $page = 1, int $limit = 10, array $criteria = [], ?array $orderBy = null): array
     {
-        $category = $this->find($id);
-        if ($category) {
-            $this->entityManager->remove($category);
-            $this->entityManager->flush();
-        }
-    }
+        $orderBy ??= ['name' => 'ASC'];
 
-    public function create(Category $category): void
-    {
-        $this->entityManager->persist($category);
-        $this->entityManager->flush();
+        return parent::findPaginated($page, $limit, $criteria, $orderBy);
     }
 }
