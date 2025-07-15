@@ -24,21 +24,29 @@ class CategoryService extends AbstractService
 
     public function findBy(array $criteria): array
     {
-        return [];
+        return $this->repository->findBy($criteria);
     }
 
-    public function find(int $id): Category
+    public function find(int $id): ?Category
     {
-        return new Category();
+        return $this->repository->find($id);
     }
 
     public function update(Category $category): Category
     {
+        $this->entityManager->persist($category);
+        $this->entityManager->flush();
+
         return $category;
     }
 
     public function remove(int $id): void
     {
+        $category = $this->find($id);
+        if ($category) {
+            $this->entityManager->remove($category);
+            $this->entityManager->flush();
+        }
     }
 
     public function create(Category $category): void

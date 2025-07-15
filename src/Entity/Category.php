@@ -20,6 +20,9 @@ class Category
     #[ORM\Column]
     private string $description;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagePath = null;
+
     #[ORM\Column]
     private DateTime $createdAt;
 
@@ -62,6 +65,16 @@ class Category
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): void
+    {
+        $this->imagePath = $imagePath;
     }
 
     public function getCreatedAt(): DateTime
