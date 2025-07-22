@@ -19,7 +19,14 @@ class CategoryService extends AbstractService
 
     public function findAll(): array
     {
-        return $this->repository->findAll();
+        $page = $_GET['page'] ?? 1;
+        $limit = 10;
+
+        return $this->repository->findBy(
+            criteria: [],
+            limit: $limit,
+            offset: $limit * ($page - 1),
+        );
     }
 
     public function findBy(array $criteria): array

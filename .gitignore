@@ -2,3 +2,4 @@ vendor/
 .vscode/
 .php-cs-fixer.cache
 .idea
+assets/images/uploads/category/

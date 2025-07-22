@@ -53,7 +53,7 @@
                         <td><?= htmlspecialchars($cada->getDescription()) ?></td>
                         <td>
                             <?php if ($cada->getImagePath()): ?>
-                                <img src="/assets/images/categories/<?= htmlspecialchars($cada->getImagePath()) ?>" 
+                                <img src="<?= htmlspecialchars($cada->getImagePath()) ?>"
                                     class="rounded-3" 
                                     width="100px" 
                                     height="100px"
@@ -82,6 +82,13 @@
                 <?php endforeach; ?>
                 </tbody>
             </table>
+
+            <div class="text-end mt-3">
+                <?php
+                    $page = ($_GET['page'] ?? 1) + 1;
+                ?>
+                <a href="?page=<?=$page?>" class="btn btn-outline-primary">Próxima página</a>
+            </div>
         </div>
     </div>
 </section>

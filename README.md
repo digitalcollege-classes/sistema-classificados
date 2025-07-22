@@ -51,7 +51,7 @@ E agora basta rodar o docker
 
 E agora rodar o composer install para instalar as dependencias
 
-- `install_dependencies`
+- `make install_dependencies`
 - `make reset_banco`
 - `make fixtures`
 
