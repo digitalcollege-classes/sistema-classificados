@@ -51,7 +51,9 @@ E agora basta rodar o docker
 
 E agora rodar o composer install para instalar as dependencias
 
-`docker compose exec -T php bash -c "composer install"`
+- `install_dependencies`
+- `make reset_banco`
+- `make fixtures`
 
 Pronto,é sucesso!
 
